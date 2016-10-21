@@ -1,0 +1,39 @@
+Xml has:
+    id
+    route tag
+    dir tag
+    lat
+    lon
+    secsSinceReport
+    predictable
+    heading
+
+
+scrapetimetable.py:
+    Get route data, including lat and lon for stops
+    Get timetable eg schedule for stops
+
+findspacings.py:
+    Actually calculate the spacing between arrivals at a stop
+    Needs the h5 files to already be generated
+    Saved in data.mat
+
+extract_times_jithin.py and analyze_all_named_stops.py:
+    generates spacings.mat
+    has:
+    data_map = {
+            'stop_idxs': [x[0] for x in all_data],
+            'schedule_codes': [x[1] for x in all_data],
+            'chunk_idxs': [x[2] for x in all_data],
+            'times'     : [x[3] for x in all_data],
+            'spacings': [x[4] for x in all_data],
+            'spacings_expected': [x[5] for x in all_data],
+            }
+
+
+dependencies:
+    gcc
+    hdf5
+    scipy
+    tables
+    bs4
