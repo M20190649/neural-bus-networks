@@ -18,7 +18,8 @@ findspacings.py:
     Needs the h5 files to already be generated
     Saved in data.mat
 
-extract_times_jithin.py and analyze_all_named_stops.py:
+analyze_all_named_stops.py:
+    uses findspacings.py
     generates spacings.mat
     has:
     data_map = {
@@ -30,6 +31,12 @@ extract_times_jithin.py and analyze_all_named_stops.py:
             'spacings_expected': [x[5] for x in all_data],
             }
 
+plot.py:
+    Uses spacing.mat to generate plots
+    Just uses stop ids and spacings
+    stuff = scipy.io.loadmat('spacings.mat')
+    stop_idxs = stuff['stop_idxs'].transpose()
+    all_gaps = stuff['spacings'].transpose()
 
 dependencies:
     gcc
@@ -37,3 +44,6 @@ dependencies:
     scipy
     tables
     bs4
+
+
+I already have times, but I need expected times, not just expected spacings

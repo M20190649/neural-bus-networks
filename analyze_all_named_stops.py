@@ -137,6 +137,7 @@ if __name__ == '__main__':
                             if chunk_idx < 0:
                                 chunk_idx += len(chunktimes)
                             expected_s = timetable_chunks[chunk_idx][1]
+                        print "stop_idx", "schedule code", "chunk_idx", "time", "s", "expected_s"
                         print stop_idx, schedule_code, chunk_idx, thetime, s, expected_s
 
                         all_data.append([stop_idx, schedule_code, chunk_idx, times[idx], s, expected_s])
