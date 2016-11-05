@@ -6,16 +6,23 @@ import urllib2
 import xml.etree.ElementTree as ET
 
 def ReadMBTATimetable(route, direction, timing):
+    """
+    Input a route number, direction: I or O for inbound and outbound, and a Timing
+
+    inbound - I
+    outbound - O
+
+    timing
+     weekday - W
+     Saturday - S
+     Sunday - U
+     todo - holidays
+
+    Returns a 2D array.  First elt of every array is the name of the bus stop.  The rest of
+    the array  contains times when a bus arrives at that stop.
+    """
     theURLTemplate = "http://www.mbta.com/schedules_and_maps/bus/routes/?" + \
             "route=%(route)d&direction=%(direction)s&timing=%(timing)s"
-    #inbound - I
-    #outbound - O
-
-    #timing
-    # weekday - W
-    # Saturday - S
-    # Sunday - U
-    # todo - holidays
 
     data = {
         'route': route,
@@ -25,7 +32,7 @@ def ReadMBTATimetable(route, direction, timing):
 
     theURL = theURLTemplate % data
     html_timetable = urllib2.urlopen(theURL).read()
-    soup = BeautifulSoup(html_timetable)
+    soup = BeautifulSoup(html_timetable, "html.parser")
     timetable = soup.find(id="timetable")
     if timetable is None:
         print 'No data found'
@@ -46,17 +53,34 @@ def ReadMBTATimetable(route, direction, timing):
 
 
 def ReadRouteConfig(route):
+    '''
+    Gets some route information for the route
+
+    Stops is a list of all the stops which includes a lat and long, a name and an id/tag
+
+    Directions is a matrix which has the first element of each list a dictionary which has
+    a title and direction (outbound or inbound) and the rest of the list is tags for stops
+    which are in that directions
+
+
+    '''
+
+    # This URL contains latitude and longitude for all of the stops, inbound and outbound.
+    # Also contains some path information
     theURLTemplate = 'http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=mbta&r=%d'
     theURL = theURLTemplate % route
+
     html_timetable = urllib2.urlopen(theURL).read()
     root = ET.fromstring(html_timetable)
     route = root.find('route')
     assert route is not None, "Could not retrieve useable data from Nextbus.com"
 
+    # This gets all the stops including inbound and outbound
     stops = []
     for stop in route.findall('stop'):
         stops.append(stop.attrib)
 
+    # Now we look at direction to find the direction for each stop, inbound or outbound
     directions = []
     for direction in route.findall('direction'):
         directions.append([direction.attrib])
@@ -70,6 +94,15 @@ def ReadRouteConfig(route):
 
 
 def TimeToScheduleCode(thetime = None):
+    """
+    Takes a time object
+
+    Returns the schedule code
+
+    W = weekday
+    S = saturday
+    U = sunday
+    """
     if thetime is None:
         thetime = datetime.now()
     try:
@@ -101,7 +134,13 @@ def TimeToScheduleCode(thetime = None):
 
 def ChunkTimetable(timings):
     """
-    Chunks timetable
+    Chunks timetable.  There are intervals in the day where the bus comes at a regular
+    interval.  Eg from 9-12 it comes every 20 minutes.  Break up the times into
+    chunks with the same interval.
+
+    Returns the mean or intervals for each consistent chunk
+    and error, and start time of chunk
+
 
     Input:
         Array of datetime objects representing time of day
@@ -113,8 +152,10 @@ def ChunkTimetable(timings):
     """
 
     timings = numpy.array(timings)
+    # print("timings",timings)
 
     spacings = numpy.diff(timings)
+    # print("spacings",spacings)
     #Fix negative time jump if the timetable runs past midnight
     spacings[spacings < timedelta(0)] += timedelta(hours = 24)
     #Convert to minutes
@@ -135,13 +176,22 @@ def ChunkTimetable(timings):
                 pop_stderr = 0.0
             else:
                 pop_stderr = numpy.std(spacings[idx0:idx+1])/numpy.sqrt(idx-idx0)
-
             timetable_chunks.append((timings[idx0].time(), pop_mean, pop_stderr))
             idx0 = idx+1
-
     return numpy.array(timetable_chunks)
 
 
+def getLocation(name, bus_stop_data):
+    """Search for named bus stop in bus stop data from list of (location,name)
+
+    Returns:
+        tuple of (latitude, longitude) for first match in bus_stop_data
+        None if not found
+    """
+    for location,stop_name in bus_stop_data:
+        if stop_name == name:
+            return location
+    return None
 
 def getBusStopLocation(this_bus_stop_name, bus_stop_data):
     """Search for named bus stop in bus stop data
@@ -150,12 +200,8 @@ def getBusStopLocation(this_bus_stop_name, bus_stop_data):
         tuple of (latitude, longitude) for first match in bus_stop_data
         None if not found
     """
-    # print("this stop: ",this_bus_stop_name)
     for current_stop in bus_stop_data:
-        # print("current stop",current_stop)
-        # print("Current stop",current_stop['title'])
-        string1 = unicode(current_stop['title'].replace('@', '&').strip())
-        # print("String: ",string1)
+        string1 = unicode(current_stop['title'].strip())
         if string1 in this_bus_stop_name or this_bus_stop_name in string1:
             return float(current_stop['lat']), float(current_stop['lon'])
 
@@ -170,15 +216,17 @@ if __name__ == '__main__':
     # Represents stops with location
     bus_stop_data, _ = ReadRouteConfig(route = 1)
 
-    print("Stops",named_bus_stops)
+    # print("Stops",named_bus_stops)
     # print("data",bus_stop_data)
     #Match bus stop names from NextBus to MBTA website
     for stop in named_bus_stops:
         # STEP 1. Attempt to match the name of the bus stop in the timetable with
         #  a bus stop name in the Nextbus feed.
         this_bus_stop_name = stop[0].strip() #Zeroth row is a string, the rest are times
+        # print("this_bus_stop_name",this_bus_stop_name)
         this_bus_stop_location = getBusStopLocation(this_bus_stop_name, bus_stop_data)
 
+        # print("this_bus_stop_location",this_bus_stop_location)
         # print stop[1:]
 
         # STEP 2. Segment the timetable into times with the same expected bus spacings

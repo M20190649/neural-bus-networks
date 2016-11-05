@@ -8,13 +8,13 @@ Xml has:
     predictable
     heading
 
-
 scrapetimetable.py:
     Get route data, including lat and lon for stops
     Get timetable eg schedule for stops
 
 findspacings.py:
     Actually calculate the spacing between arrivals at a stop
+    Also calculates arrival time at each stop
     Needs the h5 files to already be generated
     Saved in data.mat
 
@@ -46,4 +46,6 @@ dependencies:
     bs4
 
 
-I already have times, but I need expected times, not just expected spacings
+I already have times, but I need expected times, not just expected spacings.
+I can get expected time for a stop if it is on the schedule, but what about
+stops which do not have a schedule?  What to do then?

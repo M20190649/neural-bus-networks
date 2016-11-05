@@ -19,21 +19,27 @@ def dist(origin, destination, radius = 6371.392896):
 
 
 def GetAllIntervalData(VehicleLocations, route=1, direction='1_1_var0', position=(42.3589399, -71.09363)):
+    """
+    Input the vehiclelocations, the route and direction (inbound/outbound), and the postition, the lat and lon for a stop
+
+    Returns spacings, times, where spacings is the intervals between arrivals at that stop, and times is
+    the actual arrival times at that stop.
+    """
     #Defaults
     #Get data from
 #   http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=mbta&r=64
     # 1 bus, inbound, at 84 Mass Ave
 
     # 1 bus, outbound, at 84 Mass Ave
-    #direction='1_0_var0'
+    # direction='1_0_var0'
 
     # CT1 bus, outbound, at 84 Mass Ave
-    #route=701
-    #direction='701_0_var0'
+    # route=701
+    # direction='701_0_var0'
 
     # CT1 bus, inbound, at 84 Mass Ave
-    route=701
-    direction='701_1_var0'
+    # route=701
+    # direction='701_1_var0'
 
     # 64
     #route=64
@@ -54,6 +60,11 @@ def GetAllIntervalData(VehicleLocations, route=1, direction='1_1_var0', position
     return ExtractArrivalIntervals(trajectories, position)
 
 def ExtractArrivalIntervals(trajectories, position, doWrite = True):
+    """
+    Takes in trajectories, which are lists of (time, vehicleId, latitude, longitude)
+
+    Returns arrival intervals and times to hit each stop
+    """
     arrivalDistanceThreshold = 0.5 #km
     arrivalTimeThreshold = 300     #seconds
     maxIntervalThreshold = 2*60*60 #seconds
@@ -90,6 +101,8 @@ def ExtractArrivalIntervals(trajectories, position, doWrite = True):
             arrivalTimesUnsorted.append(times)
 
     arrivalTimes = sorted(arrivalTimesUnsorted)
+    # print("arrival times",arrivalTimes)
+    # print("arrival times",len( arrivalTimes ))
 
     arrivalIntervals = numpy.diff(arrivalTimes)
     times = numpy.array(arrivalTimes[1:]) #Associate interval with later time
@@ -101,6 +114,12 @@ def ExtractArrivalIntervals(trajectories, position, doWrite = True):
 
     return arrivalIntervals, times
 
+def ExtractArrivalTimes(trajectories, position, doWrite = True):
+    """
+    Get the arrival times for a given stop.
+    """
+    return ExtractArrivalIntervals(trajectories, position, doWrite = True)[1]
+
 if __name__ == '__main__':
     from glob import glob
     all_spacings = []
@@ -108,17 +127,18 @@ if __name__ == '__main__':
     for filename in sorted(glob('*.h5')):
         h5file = tables.open_file(filename)
         print 'Reading data from', filename
+        print("file",filename)
         spacings, times = GetAllIntervalData(h5file.root.VehicleLocations)
         h5file.close()
         all_spacings += list(spacings)
         all_times += list(times)
     if True:#doWrite:
-            print len(all_times), "arrivals recorded"
-            print len(all_spacings), "intervals recorded"
+            # print len(all_times), "arrivals recorded"
+            # print len(all_spacings), "intervals recorded"
             import scipy.io
             data_dict = {'gaps': all_spacings, 'timestamps': all_times}
-            print("data_dict",data_dict)
+            # print("data_dict",data_dict)
             scipy.io.savemat('data.mat', data_dict, oned_as = 'row')
-            print 'data.mat saved'
+            # print 'data.mat saved'
 
     h5file.close()

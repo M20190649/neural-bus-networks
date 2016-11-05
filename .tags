@@ -4,157 +4,119 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-ChunkTimetable	/Users/Cooper/Drive/urop/proposal/neural-timing/scrapetimetable.py	/^def ChunkTimetable(timings):$/;"	f
-ExtractArrivalIntervals	/Users/Cooper/Drive/urop/proposal/neural-timing/findspacings.py	/^def ExtractArrivalIntervals(trajectories, position, doWrite = True):$/;"	f
-GetAllIntervalData	/Users/Cooper/Drive/urop/proposal/neural-timing/findspacings.py	/^def GetAllIntervalData(VehicleLocations, route=1, direction='1_1_var0', position=(42.3589399, -71.09363)):$/;"	f
-Mix	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^    Mix = lambda s, mix, beta, mu1, mu2: mix*Q(s, mu1) + (1-mix)*P(beta, s, mu2)$/;"	v
-P	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^            * scipy.exp(-(s\/avg_gap * gamma(1+beta\/2) \/ gamma((1+beta)\/2))**2)$/;"	v
-ParseAll	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^def ParseAll(theHDF5FileName = 'mbta_trajectories.h5', Cleanup = True):$/;"	f
-Q	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^    Q=lambda s, avg_gap: 1\/avg_gap * scipy.exp(- s\/avg_gap)$/;"	v
-ReadMBTATimetable	/Users/Cooper/Drive/urop/proposal/neural-timing/scrapetimetable.py	/^def ReadMBTATimetable(route, direction, timing):$/;"	f
-ReadRouteConfig	/Users/Cooper/Drive/urop/proposal/neural-timing/scrapetimetable.py	/^def ReadRouteConfig(route):$/;"	f
-TimeToScheduleCode	/Users/Cooper/Drive/urop/proposal/neural-timing/scrapetimetable.py	/^def TimeToScheduleCode(thetime = None):$/;"	f
-VehicleLocation	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^class VehicleLocation(tables.IsDescription):$/;"	c
-VehicleLocation	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^class VehicleLocation(tables.IsDescription):$/;"	c
-VehicleLocation	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^class VehicleLocation(tables.IsDescription):$/;"	c
-all_bus_stops	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^    all_bus_stops = []$/;"	v
-all_bus_stops	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^    all_bus_stops = []$/;"	v
-all_data	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^    all_data = []$/;"	v
-all_data	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^    all_data = []$/;"	v
-all_gaps	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^all_gaps = stuff['spacings'].transpose()$/;"	v
-all_spacings	/Users/Cooper/Drive/urop/proposal/neural-timing/findspacings.py	/^    all_spacings = []$/;"	v
-all_times	/Users/Cooper/Drive/urop/proposal/neural-timing/findspacings.py	/^    all_times = []$/;"	v
-avg_gap	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^    avg_gap = scipy.mean(gaps)$/;"	v
-avg_gap_err	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^    avg_gap_err = scipy.sqrt(scipy.var(gaps)\/(len(gaps)-1))$/;"	v
-ax	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^    ax = fig.add_subplot(111)$/;"	v
-chunk_idx	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                            chunk_idx = len(chunktimes[chunktimes < thetime]) - 1$/;"	v
-chunk_idx	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                            chunk_idx = numpy.NaN$/;"	v
-chunk_idx	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                        chunk_idx = len(chunktimes[chunktimes < thetime]) - 1$/;"	v
-chunk_idx	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                        chunk_idx = numpy.NaN$/;"	v
-chunktimes	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                            chunktimes = numpy.array([c[0] for c in timetable_chunks])$/;"	v
-chunktimes	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                        chunktimes = numpy.array([c[0] for c in timetable_chunks])$/;"	v
-compressionOptions	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    compressionOptions = tables.Filters(complevel=9, complib='blosc')$/;"	v
-coordinates	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        coordinates = (float(match['lat']), float(match['lon']))$/;"	v
-coordinates	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^        coordinates = (float(match['lat']), float(match['lon']))$/;"	v
-data_dict	/Users/Cooper/Drive/urop/proposal/neural-timing/findspacings.py	/^            data_dict = {'gaps': all_spacings, 'timestamps': all_times}$/;"	v
-data_map	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^    data_map = {$/;"	v
-data_map	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^    data_map = {$/;"	v
-direction	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^    direction = tables.StringCol(16)$/;"	v	class:VehicleLocation
-direction	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    direction = tables.StringCol(16)$/;"	v	class:VehicleLocation
-direction	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^    direction = tables.StringCol(16)$/;"	v	class:VehicleLocation
-direction_tag	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^            direction_tag = direction[0]['tag']$/;"	v
-direction_tag	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^            direction_tag = direction[0]['tag']$/;"	v
-dist	/Users/Cooper/Drive/urop/proposal/neural-timing/findspacings.py	/^def dist(origin, destination, radius = 6371.392896):$/;"	f
-doWrite	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                            doWrite = False)$/;"	v
-doWrite	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                        doWrite = False)$/;"	v
-earliest_date	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        earliest_date = datetime.datetime.fromtimestamp(min(timestamps)).date()$/;"	v
-earliest_date	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^    earliest_date = datetime.datetime.fromtimestamp(min(timestamps)).date()$/;"	v
-endtime	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                    endtime = timestamp(thenextday, datetime.time(3, 0))$/;"	v
-endtime	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                endtime = timestamp(thenextday, datetime.time(3, 0))$/;"	v
-expected_s	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                            expected_s = numpy.NaN$/;"	v
-expected_s	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                            expected_s = timetable_chunks[chunk_idx][1]$/;"	v
-expected_s	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                        expected_s = numpy.NaN$/;"	v
-expected_s	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                        expected_s = timetable_chunks[chunk_idx][1]$/;"	v
-f1	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^        f1 = tables.openFile(file1)$/;"	v
-f1	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    f1 = tables.openFile(file1, 'w', filters = compressionOptions)$/;"	v
-f2	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^    f2 = tables.openFile(file2, 'a')$/;"	v
-f2	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    f2 = tables.openFile(file2)$/;"	v
-fig	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^    fig = p.figure()$/;"	v
-getBusStopLocation	/Users/Cooper/Drive/urop/proposal/neural-timing/scrapetimetable.py	/^def getBusStopLocation(this_bus_stop_name, bus_stop_data):$/;"	f
-h5file	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        h5file = tables.open_file(h5filename)$/;"	v
-h5file	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^    h5file = tables.openFile('mbta_trajectories.h5')$/;"	v
-h5file	/Users/Cooper/Drive/urop/proposal/neural-timing/findspacings.py	/^        h5file = tables.open_file(filename)$/;"	v
-h5filenames	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        h5filenames = [sys.argv[3]]$/;"	v
-h5filenames	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        h5filenames = glob('*.h5')$/;"	v
-heading	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^    heading   = tables.UInt16Col()    #Heading in degrees$/;"	v	class:VehicleLocation
-heading	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    heading   = tables.UInt16Col()    #Heading in degrees$/;"	v	class:VehicleLocation
-heading	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^    heading   = tables.UInt16Col()    #Heading in degrees$/;"	v	class:VehicleLocation
-hist_max	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^hist_max = (int(max(all_gaps\/10))+1)*10$/;"	v
-latest_date	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        latest_date   = datetime.datetime.fromtimestamp(max(timestamps)).date()$/;"	v
-latest_date	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^    latest_date   = datetime.datetime.fromtimestamp(max(timestamps)).date()$/;"	v
-latitude	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^    latitude  = tables.Float64Col()   #Reported latitude$/;"	v	class:VehicleLocation
-latitude	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    latitude  = tables.Float64Col()   #Reported latitude$/;"	v	class:VehicleLocation
-latitude	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^    latitude  = tables.Float64Col()   #Reported latitude$/;"	v	class:VehicleLocation
-logger	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^logger = logging.getLogger('xml2hdf5')$/;"	v
-longitude	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^    longitude = tables.Float64Col()   #Reported longitude$/;"	v	class:VehicleLocation
-longitude	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    longitude = tables.Float64Col()   #Reported longitude$/;"	v	class:VehicleLocation
-longitude	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^    longitude = tables.Float64Col()   #Reported longitude$/;"	v	class:VehicleLocation
-name	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        name = match['title']$/;"	v
-name	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^        name = match['title']$/;"	v
-named_bus_stops	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^            named_bus_stops = ReadMBTATimetable(route = theroute, direction = thedirection,$/;"	v
-named_bus_stops	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^        named_bus_stops = ReadMBTATimetable(route = theroute, direction = thedirection,$/;"	v
-named_bus_stops	/Users/Cooper/Drive/urop/proposal/neural-timing/scrapetimetable.py	/^    named_bus_stops = ReadMBTATimetable(route = 1, direction = 'I',$/;"	v
-named_stop_location	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                    named_stop_location = getBusStopLocation(named_stop_name, bus_stop_data)$/;"	v
-named_stop_location	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                named_stop_location = getBusStopLocation(named_stop_name, bus_stop_data)$/;"	v
-named_stop_name	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                    named_stop_name = named_stop[0].strip()$/;"	v
-named_stop_name	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                named_stop_name = named_stop[0].strip()$/;"	v
-newdata	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^        newdata = 0$/;"	v
-newrow	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^                newrow = t2.row$/;"	v
-newrow	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^            newrow = t1.row$/;"	v
-nextbus_daemon	/Users/Cooper/Drive/urop/proposal/neural-timing/mbta_daemon.py	/^def nextbus_daemon(polltime = 15, timeouttime = 60,$/;"	f
-now	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^    now = datetime.datetime.now() - datetime.timedelta(hours=4)$/;"	v
-now2	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^    now2=now.isocalendar()$/;"	v
-outfilename	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        outfilename = 'spacings'$/;"	v
-outfilename	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        outfilename = sys.argv[4]$/;"	v
-parse_mbta_xml	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^def parse_mbta_xml(database, thefile, presentData = None):$/;"	f
-perr	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^    perr = scipy.sqrt(scipy.diag(pcov))$/;"	v
-presentData	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^    presentData = {}$/;"	v
-queryString	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                            (theroute, direction_tag, starttime, endtime)$/;"	v
-queryString	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                        (theroute, direction_tag, starttime, endtime)$/;"	v
-readURL	/Users/Cooper/Drive/urop/proposal/neural-timing/mbta_daemon.py	/^def readURL(theURL):$/;"	f
-route	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^    route     = tables.StringCol(8)$/;"	v	class:VehicleLocation
-route	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    route     = tables.StringCol(8)$/;"	v	class:VehicleLocation
-route	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^    route     = tables.StringCol(8)$/;"	v	class:VehicleLocation
-s	/Users/Cooper/Drive/urop/proposal/neural-timing/mbta_daemon.py	/^        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)$/;"	v
-starttime	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                    starttime = timestamp(thedate, datetime.time(3, 0))$/;"	v
-starttime	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                starttime = timestamp(thedate, datetime.time(3, 0))$/;"	v
-stop_idxs	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^stop_idxs = stuff['stop_idxs'].transpose()$/;"	v
-stops_tags	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^            stops_tags = [d['tag'] for d in direction[1:]]$/;"	v
-stops_tags	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^            stops_tags = [d['tag'] for d in direction[1:]]$/;"	v
-stuff	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^stuff = scipy.io.loadmat('spacings.mat')$/;"	v
-t	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^    t=scipy.arange(0, hist_max, hist_max\/1024.0)$/;"	v
-t1	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^        t1 = f1.root.VehicleLocations$/;"	v
-t1	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    t1 = f1.create_table('\/', 'VehicleLocations', VehicleLocation, 'MBTA vehicle positions',$/;"	v
-t2	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^    t2 = f2.root.VehicleLocations$/;"	v
-t2	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    t2 = f2.root.VehicleLocations$/;"	v
-thedate	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                        thedate = thenextday #Iterate$/;"	v
-thedate	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                    thedate = thenextday #Iterate$/;"	v
-thedate	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                thedate = earliest_date$/;"	v
-thedate	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                    thedate = thenextday #Iterate$/;"	v
-thedate	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                thedate = thenextday #Iterate$/;"	v
-thedate	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^            thedate = earliest_date$/;"	v
-thedirection	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        thedirection = 'I' #'O'$/;"	v
-thedirection	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        thedirection = sys.argv[2]$/;"	v
-thedirection	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^    thedirection = 'I' #'O'$/;"	v
-thefilename	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^    thefilename='mbta_trajectories_%d_%02d.h5' % now.isocalendar()[0:2]$/;"	v
-thenextday	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                    thenextday = thedate + datetime.timedelta(days=1)$/;"	v
-thenextday	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                thenextday = thedate + datetime.timedelta(days=1)$/;"	v
-theroute	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        theroute = 1$/;"	v
-theroute	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        theroute = int(sys.argv[1])$/;"	v
-theroute	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^    theroute = 1$/;"	v
-thetime	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                        thetime = datetime.datetime.fromtimestamp(times[idx]).time()$/;"	v
-thetime	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                    thetime = datetime.datetime.fromtimestamp(times[idx]).time()$/;"	v
-this_bus_stop_location	/Users/Cooper/Drive/urop/proposal/neural-timing/scrapetimetable.py	/^        this_bus_stop_location = getBusStopLocation(this_bus_stop_name, bus_stop_data)$/;"	v
-this_bus_stop_name	/Users/Cooper/Drive/urop/proposal/neural-timing/scrapetimetable.py	/^        this_bus_stop_name = stop[0].strip() #Zeroth row is a string, the rest are times$/;"	v
-time	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^    time      = tables.Float64Col()   #Time stamp in seconds since epoch time$/;"	v	class:VehicleLocation
-time	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    time      = tables.Float64Col()   #Time stamp in seconds since epoch time$/;"	v	class:VehicleLocation
-time	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^    time      = tables.Float64Col()   #Time stamp in seconds since epoch time$/;"	v	class:VehicleLocation
-timestamp	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^def timestamp(thedatetime, thetime = None):$/;"	f
-timestamp	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^def timestamp(thedatetime, thetime = None):$/;"	f
-timestamps	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^        timestamps = h5file.root.VehicleLocations.col('time')$/;"	v
-timestamps	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^    timestamps = h5file.root.VehicleLocations.col('time')$/;"	v
-timetable_chunks	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                        timetable_chunks = ChunkTimetable(named_stop[1:])$/;"	v
-timetable_chunks	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                timetable_chunks = None$/;"	v
-timetable_chunks	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                    timetable_chunks = ChunkTimetable(named_stop[1:])$/;"	v
-timetable_chunks	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^            timetable_chunks = None$/;"	v
-timetable_chunks	/Users/Cooper/Drive/urop/proposal/neural-timing/scrapetimetable.py	/^        timetable_chunks = ChunkTimetable(stop[1:])$/;"	v
-timing	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                            timing = schedule_code)$/;"	v
-timing	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                        timing = schedule_code)$/;"	v
-timing	/Users/Cooper/Drive/urop/proposal/neural-timing/scrapetimetable.py	/^            timing = TimeToScheduleCode())$/;"	v
-title	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^    title = u'Bus gap times'$/;"	v
-trajectories	/Users/Cooper/Drive/urop/proposal/neural-timing/analyze_all_named_stops.py	/^                    trajectories = h5file.root.VehicleLocations.where(queryString)$/;"	v
-trajectories	/Users/Cooper/Drive/urop/proposal/neural-timing/extract_times_jithin.py	/^                trajectories = h5file.root.VehicleLocations.where(queryString)$/;"	v
-vehicleID	/Users/Cooper/Drive/urop/proposal/neural-timing/h5merge.py	/^    vehicleID = tables.StringCol(4)$/;"	v	class:VehicleLocation
-vehicleID	/Users/Cooper/Drive/urop/proposal/neural-timing/h5remake.py	/^    vehicleID = tables.StringCol(4)$/;"	v	class:VehicleLocation
-vehicleID	/Users/Cooper/Drive/urop/proposal/neural-timing/parseh5.py	/^    vehicleID = tables.StringCol(4)$/;"	v	class:VehicleLocation
-xdata	/Users/Cooper/Drive/urop/proposal/neural-timing/plot.py	/^    xdata = scipy.arange(0, hist_max, 2)$/;"	v
+ChunkTimetable	/Users/Cooper/Drive/urop/neural-timing/scrapetimetable.py	/^def ChunkTimetable(timings):$/;"	f
+ExtractArrivalIntervals	/Users/Cooper/Drive/urop/neural-timing/findspacings.py	/^def ExtractArrivalIntervals(trajectories, position, doWrite = True):$/;"	f
+ExtractArrivalTimes	/Users/Cooper/Drive/urop/neural-timing/findspacings.py	/^def ExtractArrivalTimes(trajectories, position, doWrite = True):$/;"	f
+GetAllIntervalData	/Users/Cooper/Drive/urop/neural-timing/findspacings.py	/^def GetAllIntervalData(VehicleLocations, route=1, direction='1_1_var0', position=(42.3589399, -71.09363)):$/;"	f
+Mix	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^    Mix = lambda s, mix, beta, mu1, mu2: mix*Q(s, mu1) + (1-mix)*P(beta, s, mu2)$/;"	v
+P	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^            * scipy.exp(-(s\/avg_gap * gamma(1+beta\/2) \/ gamma((1+beta)\/2))**2)$/;"	v
+ParseAll	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^def ParseAll(theHDF5FileName = 'mbta_trajectories.h5', Cleanup = True):$/;"	f
+Q	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^    Q=lambda s, avg_gap: 1\/avg_gap * scipy.exp(- s\/avg_gap)$/;"	v
+ReadMBTATimetable	/Users/Cooper/Drive/urop/neural-timing/scrapetimetable.py	/^def ReadMBTATimetable(route, direction, timing):$/;"	f
+ReadRouteConfig	/Users/Cooper/Drive/urop/neural-timing/scrapetimetable.py	/^def ReadRouteConfig(route):$/;"	f
+TimeToScheduleCode	/Users/Cooper/Drive/urop/neural-timing/scrapetimetable.py	/^def TimeToScheduleCode(thetime = None):$/;"	f
+VehicleLocation	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^class VehicleLocation(tables.IsDescription):$/;"	c
+VehicleLocation	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^class VehicleLocation(tables.IsDescription):$/;"	c
+VehicleLocation	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^class VehicleLocation(tables.IsDescription):$/;"	c
+all_bus_stops	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^    all_bus_stops = []$/;"	v
+all_data	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^    all_data = []$/;"	v
+all_gaps	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^all_gaps = stuff['spacings'].transpose()$/;"	v
+avg_gap	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^    avg_gap = scipy.mean(gaps)$/;"	v
+avg_gap_err	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^    avg_gap_err = scipy.sqrt(scipy.var(gaps)\/(len(gaps)-1))$/;"	v
+ax	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^    ax = fig.add_subplot(111)$/;"	v
+chunk_idx	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                            chunk_idx = len(chunktimes[chunktimes < thetime]) - 1$/;"	v
+chunk_idx	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                            chunk_idx = numpy.NaN$/;"	v
+chunktimes	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                            chunktimes = numpy.array([c[0] for c in timetable_chunks])$/;"	v
+compressionOptions	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    compressionOptions = tables.Filters(complevel=9, complib='blosc')$/;"	v
+coordinates	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        coordinates = (float(match['lat']), float(match['lon']))$/;"	v
+data_map	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^    data_map = {$/;"	v
+direction	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^    direction = tables.StringCol(16)$/;"	v	class:VehicleLocation
+direction	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    direction = tables.StringCol(16)$/;"	v	class:VehicleLocation
+direction	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^    direction = tables.StringCol(16)$/;"	v	class:VehicleLocation
+direction_tag	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^            direction_tag = direction[0]['tag']$/;"	v
+dist	/Users/Cooper/Drive/urop/neural-timing/findspacings.py	/^def dist(origin, destination, radius = 6371.392896):$/;"	f
+doWrite	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                            doWrite = False)$/;"	v
+earliest_date	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        earliest_date = datetime.datetime.fromtimestamp(min(timestamps)).date()$/;"	v
+endtime	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                    endtime = timestamp(thenextday, datetime.time(3, 0))$/;"	v
+expected_s	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                            expected_s = numpy.NaN$/;"	v
+expected_s	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                            expected_s = timetable_chunks[chunk_idx][1]$/;"	v
+f1	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^        f1 = tables.openFile(file1)$/;"	v
+f1	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    f1 = tables.openFile(file1, 'w', filters = compressionOptions)$/;"	v
+f2	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^    f2 = tables.openFile(file2, 'a')$/;"	v
+f2	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    f2 = tables.openFile(file2)$/;"	v
+fig	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^    fig = p.figure()$/;"	v
+getBusStopLocation	/Users/Cooper/Drive/urop/neural-timing/scrapetimetable.py	/^def getBusStopLocation(this_bus_stop_name, bus_stop_data):$/;"	f
+h5file	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        h5file = tables.open_file(h5filename)$/;"	v
+h5filenames	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        h5filenames = [sys.argv[3]]$/;"	v
+h5filenames	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        h5filenames = glob('*.h5')$/;"	v
+heading	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^    heading   = tables.UInt16Col()    #Heading in degrees$/;"	v	class:VehicleLocation
+heading	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    heading   = tables.UInt16Col()    #Heading in degrees$/;"	v	class:VehicleLocation
+heading	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^    heading   = tables.UInt16Col()    #Heading in degrees$/;"	v	class:VehicleLocation
+hist_max	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^hist_max = (int(max(all_gaps\/10))+1)*10$/;"	v
+latest_date	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        latest_date   = datetime.datetime.fromtimestamp(max(timestamps)).date()$/;"	v
+latitude	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^    latitude  = tables.Float64Col()   #Reported latitude$/;"	v	class:VehicleLocation
+latitude	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    latitude  = tables.Float64Col()   #Reported latitude$/;"	v	class:VehicleLocation
+latitude	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^    latitude  = tables.Float64Col()   #Reported latitude$/;"	v	class:VehicleLocation
+logger	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^logger = logging.getLogger('xml2hdf5')$/;"	v
+longitude	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^    longitude = tables.Float64Col()   #Reported longitude$/;"	v	class:VehicleLocation
+longitude	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    longitude = tables.Float64Col()   #Reported longitude$/;"	v	class:VehicleLocation
+longitude	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^    longitude = tables.Float64Col()   #Reported longitude$/;"	v	class:VehicleLocation
+name	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        name = match['title']$/;"	v
+named_bus_stops	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^            named_bus_stops = ReadMBTATimetable(route = theroute, direction = thedirection,$/;"	v
+named_bus_stops	/Users/Cooper/Drive/urop/neural-timing/scrapetimetable.py	/^    named_bus_stops = ReadMBTATimetable(route = 1, direction = 'I',$/;"	v
+named_stop_location	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                    named_stop_location = getBusStopLocation(named_stop_name, bus_stop_data)$/;"	v
+named_stop_name	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                    named_stop_name = named_stop[0].strip()$/;"	v
+newdata	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^        newdata = 0$/;"	v
+newrow	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^                newrow = t2.row$/;"	v
+newrow	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^            newrow = t1.row$/;"	v
+nextbus_daemon	/Users/Cooper/Drive/urop/neural-timing/mbta_daemon.py	/^def nextbus_daemon(polltime = 15, timeouttime = 60,$/;"	f
+now	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^    now = datetime.datetime.now() - datetime.timedelta(hours=4)$/;"	v
+now2	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^    now2=now.isocalendar()$/;"	v
+outfilename	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        outfilename = 'spacings'$/;"	v
+outfilename	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        outfilename = sys.argv[4]$/;"	v
+parse_mbta_xml	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^def parse_mbta_xml(database, thefile, presentData = None):$/;"	f
+perr	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^    perr = scipy.sqrt(scipy.diag(pcov))$/;"	v
+presentData	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^    presentData = {}$/;"	v
+queryString	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                            (theroute, direction_tag, starttime, endtime)$/;"	v
+readURL	/Users/Cooper/Drive/urop/neural-timing/mbta_daemon.py	/^def readURL(theURL):$/;"	f
+route	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^    route     = tables.StringCol(8)$/;"	v	class:VehicleLocation
+route	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    route     = tables.StringCol(8)$/;"	v	class:VehicleLocation
+route	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^    route     = tables.StringCol(8)$/;"	v	class:VehicleLocation
+s	/Users/Cooper/Drive/urop/neural-timing/mbta_daemon.py	/^        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)$/;"	v
+starttime	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                    starttime = timestamp(thedate, datetime.time(3, 0))$/;"	v
+stop_idxs	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^stop_idxs = stuff['stop_idxs'].transpose()$/;"	v
+stops_tags	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^            stops_tags = [d['tag'] for d in direction[1:]]$/;"	v
+stuff	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^stuff = scipy.io.loadmat('spacings.mat')$/;"	v
+t	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^    t=scipy.arange(0, hist_max, hist_max\/1024.0)$/;"	v
+t1	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^        t1 = f1.root.VehicleLocations$/;"	v
+t1	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    t1 = f1.create_table('\/', 'VehicleLocations', VehicleLocation, 'MBTA vehicle positions',$/;"	v
+t2	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^    t2 = f2.root.VehicleLocations$/;"	v
+t2	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    t2 = f2.root.VehicleLocations$/;"	v
+thedate	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                        thedate = thenextday #Iterate$/;"	v
+thedate	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                    thedate = thenextday #Iterate$/;"	v
+thedate	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                thedate = earliest_date$/;"	v
+thedirection	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        thedirection = 'I' #'O'$/;"	v
+thedirection	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        thedirection = sys.argv[2]$/;"	v
+thefilename	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^    thefilename='mbta_trajectories_%d_%02d.h5' % now.isocalendar()[0:2]$/;"	v
+thenextday	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                    thenextday = thedate + datetime.timedelta(days=1)$/;"	v
+theroute	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        theroute = 1$/;"	v
+theroute	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        theroute = int(sys.argv[1])$/;"	v
+thetime	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                        thetime = datetime.datetime.fromtimestamp(times[idx]).time()$/;"	v
+this_bus_stop_location	/Users/Cooper/Drive/urop/neural-timing/scrapetimetable.py	/^        this_bus_stop_location = getBusStopLocation(this_bus_stop_name, bus_stop_data)$/;"	v
+this_bus_stop_name	/Users/Cooper/Drive/urop/neural-timing/scrapetimetable.py	/^        this_bus_stop_name = stop[0].strip() #Zeroth row is a string, the rest are times$/;"	v
+time	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^    time      = tables.Float64Col()   #Time stamp in seconds since epoch time$/;"	v	class:VehicleLocation
+time	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    time      = tables.Float64Col()   #Time stamp in seconds since epoch time$/;"	v	class:VehicleLocation
+time	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^    time      = tables.Float64Col()   #Time stamp in seconds since epoch time$/;"	v	class:VehicleLocation
+timestamp	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^def timestamp(thedatetime, thetime = None):$/;"	f
+timestamps	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^        timestamps = h5file.root.VehicleLocations.col('time')$/;"	v
+timetable_chunks	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                        timetable_chunks = ChunkTimetable(named_stop[1:])$/;"	v
+timetable_chunks	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                timetable_chunks = None$/;"	v
+timetable_chunks	/Users/Cooper/Drive/urop/neural-timing/scrapetimetable.py	/^        timetable_chunks = ChunkTimetable(stop[1:])$/;"	v
+timing	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                            timing = schedule_code)$/;"	v
+timing	/Users/Cooper/Drive/urop/neural-timing/scrapetimetable.py	/^            timing = TimeToScheduleCode())$/;"	v
+title	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^    title = u'Bus gap times'$/;"	v
+trajectories	/Users/Cooper/Drive/urop/neural-timing/analyze_all_named_stops.py	/^                    trajectories = h5file.root.VehicleLocations.where(queryString)$/;"	v
+vehicleID	/Users/Cooper/Drive/urop/neural-timing/h5merge.py	/^    vehicleID = tables.StringCol(4)$/;"	v	class:VehicleLocation
+vehicleID	/Users/Cooper/Drive/urop/neural-timing/h5remake.py	/^    vehicleID = tables.StringCol(4)$/;"	v	class:VehicleLocation
+vehicleID	/Users/Cooper/Drive/urop/neural-timing/parseh5.py	/^    vehicleID = tables.StringCol(4)$/;"	v	class:VehicleLocation
+xdata	/Users/Cooper/Drive/urop/neural-timing/plot.py	/^    xdata = scipy.arange(0, hist_max, 2)$/;"	v
