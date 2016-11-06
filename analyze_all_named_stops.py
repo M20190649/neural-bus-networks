@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     if len(sys.argv) <= 3:
         print 'No input filename specified: will scan for all *.h5 files'
-        h5filenames = glob('*.h5')
+        h5filenames = glob('data/*.h5')
     else:
         h5filenames = [sys.argv[3]]
 
@@ -131,7 +131,7 @@ if __name__ == '__main__':
                     trajectories = h5file.root.VehicleLocations.where(queryString)
 
                     #Calculate spacings
-                    spacings, times = ExtractArrivalIntervals(trajectories, this_bus_stop_location,
+                    spacings, times, vehicle_ids = ExtractArrivalIntervals(trajectories, this_bus_stop_location,
                             doWrite = False)
 
                     for idx, s in enumerate(spacings):
@@ -168,29 +168,58 @@ if __name__ == '__main__':
                             if chunk_idx < 0:
                                 chunk_idx += len(chunktimes)
                             expected_s = timetable_chunks[chunk_idx][1]
-                        all_data.append([stop_idx, schedule_code, chunk_idx, times[idx], expected_unix_time, error, s, expected_s])
+                        all_data.append([this_bus_stop_name, stop_idx,vehicle_ids[idx], schedule_code, chunk_idx, times[idx], expected_unix_time, error, s, expected_s])
                     thedate = thenextday #Iterate
 
         h5file.close()
 
     #Save data
     data_map = {
-            'stop_idxs':         [x[0] for x in all_data],
-            'schedule_codes':    [x[1] for x in all_data],
-            'chunk_idxs':        [x[2] for x in all_data],
-            'times':             [x[3] for x in all_data],
-            'expected_times':    [x[4] for x in all_data],
-            'error':             [x[5] for x in all_data],
-            'spacings':          [x[6] for x in all_data],
-            'spacings_expected': [x[7] for x in all_data],
+            'stop_names':        [x[0] for x in all_data],
+            'stop_idxs':         [x[1] for x in all_data],
+            'vehicle_idxs':      [x[2] for x in all_data],
+            'schedule_codes':    [x[3] for x in all_data],
+            'chunk_idxs':        [x[4] for x in all_data],
+            'times':             [x[5] for x in all_data],
+            'expected_times':    [x[6] for x in all_data],
+            'errors':            [x[7] for x in all_data],
+            'spacings':          [x[8] for x in all_data],
+            'spacings_expected': [x[9] for x in all_data],
             }
 
-    arrival_times = {}
-    for i in range(len(data_map['stop_idxs'])):
-        stop_id = data_map['stop_idxs'][i]
-        name = all_bus_stops[stop_id][1]
-        if name not in arrival_times:
-            arrival_times[name] = []
-        arrival_times[name].append(data_map['error'][i])
+    stop_ids = set(zip(data_map['stop_idxs'],data_map['stop_names']))
+    print sorted(list(stop_ids))
 
+    arrival_times = {}
+    for i in range(len(data_map['vehicle_idxs'])):
+        bus = data_map['vehicle_idxs'][i]
+        if bus not in arrival_times:
+            arrival_times[bus] = []
+        arrival_times[bus].append((data_map['stop_idxs'][i],data_map['errors'][i],data_map['times'][i],data_map['stop_names'][i]))
+
+    def numFullRoutes(lst):
+        first_stop = 6
+        last_stop = 28
+        start_index = 0
+        total =0
+        while first_stop in lst:
+            i = lst.index(first_stop)
+            if i+(last_stop-first_stop)<=len(lst):
+                if lst[i:i+(last_stop-first_stop)] == range(first_stop,last_stop):
+                    total+=1
+            start_index=i+1
+            lst = lst[start_index:]
+        return total
+
+    total = 0
+    for name in arrival_times:
+        print name
+        arrival_times[name].sort(key=lambda x:x[2])
+        arrivals = [x[0] for x in arrival_times[name] if x[0] >5]
+        total+=numFullRoutes(arrivals)
+    print 'total full routes',total
+
+
+
+    print "Total data points: ",len(data_map['stop_names'])
     io.savemat(outfilename, data_map, oned_as = 'row')

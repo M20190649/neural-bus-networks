@@ -38,7 +38,7 @@ def readURL(theURL):
         return gzip.GzipFile(fileobj=responseIO).read()
     else:
         return response.read()
-    
+
 
 
 def nextbus_daemon(polltime = 15, timeouttime = 60,
@@ -46,7 +46,7 @@ def nextbus_daemon(polltime = 15, timeouttime = 60,
 ?command=vehicleLocations&a=mbta&t=0'):
     """
     Main daemon driver.
-    
+
     Input
     -----
     polltime (optional): how many seconds between queries (not guaranteed to be exact)
@@ -63,7 +63,7 @@ def nextbus_daemon(polltime = 15, timeouttime = 60,
     while True:
         now = datetime.datetime.now()
         thedatetime = now.strftime('%Y-%m-%d-%H-%M-%S')
-    
+
         try:
             #Read from URL
             thedata = readURL(theURL)
@@ -74,12 +74,12 @@ def nextbus_daemon(polltime = 15, timeouttime = 60,
             logger.info('%s: Could not access Nextbus data.', thedatetime)
             time.sleep(timeouttime)
             continue
-    
+
         #Write XML file
         filename = ('mbta-' + thedatetime + '.xml')
         with open(filename, 'w') as f:
             f.write(thedata)
-        
+
         if (now - lastdbaccesstime > datetime.timedelta(hours=23)) and (2 < now.hour < 4): #Run only between 2 and 4 am
             #Spawn new process to load up XML files into database
             logger.info("%s Spawning XML reader", thedatetime)
@@ -98,11 +98,11 @@ if __name__ == '__main__':
     import socket
     try:
         s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-        ## Create an abstract socket, by prefixing it with null. 
+        ## Create an abstract socket, by prefixing it with null.
         s.bind( '\0postconnect_gateway_notify_lock')
         #print 'Spawning daemon'
         nextbus_daemon()
     except socket.error:
         pass
         #print 'Daemon already running'
-     
+

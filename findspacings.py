@@ -65,7 +65,9 @@ def ExtractArrivalIntervals(trajectories, position, doWrite = True):
 
     Returns arrival intervals and times to hit each stop
     """
-    arrivalDistanceThreshold = 0.5 #km
+
+    # Tweak this parameter to find ideal
+    arrivalDistanceThreshold = 0.25 #km
     arrivalTimeThreshold = 300     #seconds
     maxIntervalThreshold = 2*60*60 #seconds
 
@@ -95,24 +97,28 @@ def ExtractArrivalIntervals(trajectories, position, doWrite = True):
             data[theVehicle] = [(theTime, theDistance)]
 
     #Extract arrival times
-    arrivalTimesUnsorted = []
-    for vehicleData in data.values():
+    arrivalTimesWithVehicleIdUnsorted = []
+    for vehicleId in data:
+        vehicleData= data[vehicleId]
         for times, _ in vehicleData:
-            arrivalTimesUnsorted.append(times)
+            arrivalTimesWithVehicleIdUnsorted.append([vehicleId,times])
 
-    arrivalTimes = sorted(arrivalTimesUnsorted)
-    # print("arrival times",arrivalTimes)
-    # print("arrival times",len( arrivalTimes ))
+    arrivalTimesWithVehicleId = sorted(arrivalTimesWithVehicleIdUnsorted, key=lambda x:x[1])
+    arrivalTimes = [x[1] for x in arrivalTimesWithVehicleId]
+    busIds = [x[0] for x in arrivalTimesWithVehicleId]
 
-    arrivalIntervals = numpy.diff(arrivalTimes)
-    times = numpy.array(arrivalTimes[1:]) #Associate interval with later time
+    # There is no interval for the first bus
+    arrivalIntervals = [numpy.NaN]
+    arrivalIntervals.extend(numpy.diff(arrivalTimes))
+    for i in range(len(arrivalTimesWithVehicleId)):
+        arrivalTimesWithVehicleId[i].append(arrivalIntervals[i])
 
-    #Filter out intervals that exceed maximum gap
-    times = times[arrivalIntervals < maxIntervalThreshold]
-    arrivalIntervals = arrivalIntervals[arrivalIntervals < maxIntervalThreshold]
-    arrivalIntervals /= 60.0     #Convert to minutes
+    busIds = [x[0] for x in arrivalTimesWithVehicleId]
+    times = [x[1] for x in arrivalTimesWithVehicleId]
+    intervals = [x[2] for x in arrivalTimesWithVehicleId]
+    arrivalTimesWithVehicleId = filter(lambda x:x[2]<maxIntervalThreshold, arrivalTimesWithVehicleId)
 
-    return arrivalIntervals, times
+    return intervals, times,busIds
 
 def ExtractArrivalTimes(trajectories, position, doWrite = True):
     """
@@ -133,12 +139,7 @@ if __name__ == '__main__':
         all_spacings += list(spacings)
         all_times += list(times)
     if True:#doWrite:
-            # print len(all_times), "arrivals recorded"
-            # print len(all_spacings), "intervals recorded"
             import scipy.io
             data_dict = {'gaps': all_spacings, 'timestamps': all_times}
-            # print("data_dict",data_dict)
             scipy.io.savemat('data.mat', data_dict, oned_as = 'row')
-            # print 'data.mat saved'
-
     h5file.close()
