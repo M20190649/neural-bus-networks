@@ -49,3 +49,20 @@ dependencies:
 I already have times, but I need expected times, not just expected spacings.
 I can get expected time for a stop if it is on the schedule, but what about
 stops which do not have a schedule?  What to do then?
+
+
+plots.jl
+work on finding dwell time
+finite accel/veloc/etc
+refine gps locations
+instantaneous speed as proxy for traffic
+
+
+julia con
+intro to julia
+david sanders
+https://www.cs.ubc.ca/~murphyk/MLbook/
+principal components analysis
+springerlink
+9.520, 6.860
+9.6: generalized linear mixed models

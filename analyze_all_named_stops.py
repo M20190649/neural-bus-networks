@@ -175,51 +175,74 @@ if __name__ == '__main__':
 
     #Save data
     data_map = {
-            'stop_names':        [x[0] for x in all_data],
-            'stop_idxs':         [x[1] for x in all_data],
-            'vehicle_idxs':      [x[2] for x in all_data],
-            'schedule_codes':    [x[3] for x in all_data],
-            'chunk_idxs':        [x[4] for x in all_data],
-            'times':             [x[5] for x in all_data],
-            'expected_times':    [x[6] for x in all_data],
-            'errors':            [x[7] for x in all_data],
-            'spacings':          [x[8] for x in all_data],
-            'spacings_expected': [x[9] for x in all_data],
+            'stop_name':        [x[0] for x in all_data],
+            'stop_idx':         [x[1] for x in all_data],
+            'vehicle_idx':      [x[2] for x in all_data],
+            'schedule_code':    [x[3] for x in all_data],
+            'chunk_idx':        [x[4] for x in all_data],
+            'time':             [x[5] for x in all_data],
+            'expected_time':    [x[6] for x in all_data],
+            'error':            [x[7] for x in all_data],
+            'spacing':          [x[8] for x in all_data],
+            'spacing_expected': [x[9] for x in all_data],
             }
 
-    stop_ids = set(zip(data_map['stop_idxs'],data_map['stop_names']))
-    print sorted(list(stop_ids))
-
     arrival_times = {}
-    for i in range(len(data_map['vehicle_idxs'])):
-        bus = data_map['vehicle_idxs'][i]
+    for i in range(len(data_map['vehicle_idx'])):
+        bus = data_map['vehicle_idx'][i]
         if bus not in arrival_times:
             arrival_times[bus] = []
-        arrival_times[bus].append((data_map['stop_idxs'][i],data_map['errors'][i],data_map['times'][i],data_map['stop_names'][i]))
+        arrival_times[bus].append((data_map['stop_idx'][i],data_map['error'][i],data_map['time'][i],data_map['stop_name'][i]))
 
-    def numFullRoutes(lst):
+
+
+    bus_id_to_arrival_times = {}
+    for data_point in all_data:
+        bus_id = data_point[2]
+        if bus_id not in bus_id_to_arrival_times:
+            bus_id_to_arrival_times[bus_id]=[]
+        bus_id_to_arrival_times[bus_id].append(data_point)
+
+    for arrival_times_array in bus_id_to_arrival_times.values():
+        arrival_times_array.sort(key=lambda x:x[5])
+
+    def get_full_routes(all_arrivals):
+        full_routes = []
+        stop_idxs = [x[1] for x in all_arrivals]
         first_stop = 6
         last_stop = 28
         start_index = 0
-        total =0
-        while first_stop in lst:
-            i = lst.index(first_stop)
-            if i+(last_stop-first_stop)<=len(lst):
-                if lst[i:i+(last_stop-first_stop)] == range(first_stop,last_stop):
-                    total+=1
+        while first_stop in stop_idxs:
+            i = stop_idxs.index(first_stop)
+            if i+(last_stop-first_stop)<=len(stop_idxs) and stop_idxs[i:i+(last_stop-first_stop)] == range(first_stop,last_stop):
+                full_routes.append(all_arrivals[i:i+(last_stop-first_stop)])
             start_index=i+1
-            lst = lst[start_index:]
-        return total
+            stop_idxs=stop_idxs[start_index:]
+            all_arrivals=all_arrivals[start_index:]
+        return full_routes
 
-    total = 0
-    for name in arrival_times:
-        print name
-        arrival_times[name].sort(key=lambda x:x[2])
-        arrivals = [x[0] for x in arrival_times[name] if x[0] >5]
-        total+=numFullRoutes(arrivals)
-    print 'total full routes',total
+    all_full_routes=[]
+    for bus_arrival_times in bus_id_to_arrival_times.values():
+        full_routes = get_full_routes(bus_arrival_times)
+        for route in full_routes:
+            print "route"
+            print route
+            # print [x["time"] for x in route]
+            all_full_routes.extend(route)
 
+    full_route_data_map = {
+            'stop_name':        [x[0] for x in all_full_routes],
+            'stop_idx':         [x[1] for x in all_full_routes],
+            'vehicle_idx':      [x[2] for x in all_full_routes],
+            'schedule_code':    [x[3] for x in all_full_routes],
+            'chunk_idx':        [x[4] for x in all_full_routes],
+            'time':             [x[5] for x in all_full_routes],
+            'expected_time':    [x[6] for x in all_full_routes],
+            'error':            [x[7] for x in all_full_routes],
+            'spacing':          [x[8] for x in all_full_routes],
+            'spacing_expected': [x[9] for x in all_full_routes],
+            }
 
-
-    print "Total data points: ",len(data_map['stop_names'])
+    print "Total data points: ",len(data_map['stop_name'])
     io.savemat(outfilename, data_map, oned_as = 'row')
+    io.savemat("full_routes", full_route_data_map, oned_as = 'row')
