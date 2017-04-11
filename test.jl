@@ -4,12 +4,15 @@ using Mocha
 vars = matread("full_routes.mat")
 
 all_data_points = []
+
+# Separate the data into chunks, which represent periods of time
+# where buses come at regular intervals
+
 for i in [1:length(vars["time"]);]
-    data_point = Dict()
+    data_point = Dict{String,Any}()
     for key in keys(vars)
         data_point[key] = vars[key][i]
     end
-    #println(data_point)
     push!(all_data_points,data_point)
 end
 
@@ -17,16 +20,14 @@ full_routes = reshape(all_data_points,22,round(Int,length(all_data_points)/22))
 #data = Array{Array{Float64}}[]
 data =[]
 labels = []
-#for i in 1:size(full_routes,2)
-for i in 1:2
-    full_route = slice(full_routes,:,i)
-    #println(full_route)
-    route_ids = [x["stop_idx"] for x in full_route]
-    times = convert(Array{Float64},[x["time"]-full_route[1]["time"] for x in full_route])
-    input_times = times[1:length(times)-1]
-    output_times = [times[end]]
-    push!(data,input_times)
-    push!(labels,output_times)
+for i in 1:size(full_routes,2)
+  full_route = view(full_routes,:,i)
+  route_ids = [x["stop_idx"] for x in full_route]
+  times = convert(Array{Float64},[x["time"]-full_route[1]["time"] for x in full_route])
+  input_times = times[1:length(times)-1]
+  output_times = [times[end]]
+  push!(data,input_times)
+  push!(labels,output_times)
 end
 
 data = convert(Array{Array{}},data)
