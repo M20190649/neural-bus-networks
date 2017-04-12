@@ -1,7 +1,26 @@
 #!/usr/bin/env python
 import datetime
+from time import time
 import numpy
 import tables
+
+
+
+
+#####################
+import signal
+
+class TimeoutException(Exception):   # Custom exception class
+    pass
+
+def timeout_handler(signum, frame):   # Custom signal handler
+    raise TimeoutException
+
+# Change the behavior of SIGALRM
+signal.signal(signal.SIGALRM, timeout_handler)
+
+
+#######################
 
 def dist(origin, destination, radius = 6371.392896):
     # Haversine formula - takes spherical latitude and longitude in degrees and returns distance between the points
@@ -58,6 +77,24 @@ def GetAllIntervalData(VehicleLocations, route=1, direction='1_1_var0', position
 
     trajectories = VehicleLocations.where(queryString)
     return ExtractArrivalIntervals(trajectories, position)
+
+def getResult(fromList,toList):
+    # signal.alarm(1)
+    try:
+        x=0
+        while x<5000:
+            a = fromList.next()
+            toList.append(a) # Whatever your function that might hang
+            x+=1
+    except TimeoutException:
+        print("timeout")
+    except StopIteration:
+        print("stopped")
+    else:
+        print("else")
+        # signal.alarm(0)
+        return
+
 
 def ExtractArrivalIntervals(trajectories, position, doWrite = True):
     """

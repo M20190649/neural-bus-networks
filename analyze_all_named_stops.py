@@ -61,6 +61,7 @@ if __name__ == '__main__':
     #     Right now it just matches the first variant of each
     # Gets all of the stops for the input direction
     for direction in direction_data:
+        print("direction")
         if direction[0]['name'] == 'Inbound' and thedirection == 'I':
             direction_tag = direction[0]['tag']
             stops_tags = [d['tag'] for d in direction[1:]]
@@ -76,6 +77,7 @@ if __name__ == '__main__':
     # Gets a list of tuples with name of stop and lat/lon
     all_bus_stops = []
     for tag in stops_tags:
+        print("tag")
         match = [x for x in bus_stop_data if x['tag'] == tag][0]
         coordinates = (float(match['lat']), float(match['lon']))
         name = match['title']
@@ -114,7 +116,13 @@ if __name__ == '__main__':
 
                 #Now iterate over all dates
                 thedate = earliest_date
-                while thedate <= latest_date:
+                # while thedate <= latest_date:
+                while thedate <= earliest_date+datetime.timedelta(days=20):
+                    print("schedule code",schedule_code)
+                    print("stop_idx",stop_idx)
+                    print("Earliest: ",earliest_date)
+                    print("Current: ",thedate)
+                    print("Latest: ",latest_date)
                     thenextday = thedate + datetime.timedelta(days=1)
 
                     #If it's the wrong day of the week, skip
@@ -128,12 +136,12 @@ if __name__ == '__main__':
 
                     queryString = "((route == '%s') & (direction == '%s') & (%f <= time) & (time < %f))" % \
                             (theroute, direction_tag, starttime, endtime)
+
                     trajectories = h5file.root.VehicleLocations.where(queryString)
 
                     #Calculate spacings
                     spacings, times, vehicle_ids = ExtractArrivalIntervals(trajectories, this_bus_stop_location,
                             doWrite = False)
-
                     for idx, s in enumerate(spacings):
                         thetime = datetime.datetime.fromtimestamp(times[idx]).time()
                         actual_date_time = datetime.datetime.fromtimestamp(times[idx])
@@ -225,9 +233,6 @@ if __name__ == '__main__':
     for bus_arrival_times in bus_id_to_arrival_times.values():
         full_routes = get_full_routes(bus_arrival_times)
         for route in full_routes:
-            print "route"
-            print route
-            # print [x["time"] for x in route]
             all_full_routes.extend(route)
 
     full_route_data_map = {
