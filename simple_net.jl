@@ -127,8 +127,10 @@ for dataset in datasets
 
 end
 
-errors_1 = dataset_errors[1]
-errors_2 = dataset_errors[2]
+errors_1 = dataset_errors[1][1:end-1]
+errors_2 = dataset_errors[2][1:end-1]
+println(mean(errors_1))
+println(mean(errors_2))
 p=FramedPlot()
 setattr(p,"title","RMSE vs bus stop number");
 setattr(p,"xlabel","bus stop number");
