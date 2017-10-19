@@ -97,7 +97,7 @@ if __name__ == '__main__':
         for schedule_code in ['W', 'S', 'U']:
             # named_bus_stops has name and times to hit that stop
             named_bus_stops = ReadMBTATimetable(route = theroute, direction = thedirection,
-                            timing = schedule_code)
+                    timing = schedule_code)
 
             #Now iterate over ALL bus stops
             # all_bus_stops has just name and location
@@ -118,11 +118,6 @@ if __name__ == '__main__':
                 thedate = earliest_date
                 # while thedate <= latest_date:
                 while thedate <= earliest_date+datetime.timedelta(days=20):
-                    print("schedule code",schedule_code)
-                    print("stop_idx",stop_idx)
-                    print("Earliest: ",earliest_date)
-                    print("Current: ",thedate)
-                    print("Latest: ",latest_date)
                     thenextday = thedate + datetime.timedelta(days=1)
 
                     #If it's the wrong day of the week, skip
@@ -151,11 +146,11 @@ if __name__ == '__main__':
                             error = numpy.NaN
                             expected_unix_time = numpy.NaN
                         # Use closest expected arrival time
-                        else:
-                            # Finds the closest time.  You need to wrap around if the times span a day
+                    else:
+                        # Finds the closest time.  You need to wrap around if the times span a day
                             expected_time = min(timetable, key= \
-                                lambda time: min([abs(toMicroseconds(time.time())-toMicroseconds(thetime)),\
-                                86400000000-abs(toMicroseconds(time.time())-toMicroseconds(thetime))])).time()
+                                    lambda time: min([abs(toMicroseconds(time.time())-toMicroseconds(thetime)),\
+                                    86400000000-abs(toMicroseconds(time.time())-toMicroseconds(thetime))])).time()
                             expected_date_time = datetime.datetime.combine(actual_date_time.date(),expected_time)
                             error = abs(expected_date_time-actual_date_time).total_seconds()
                             # More than twelve hour difference means it was closer the the previous day
@@ -248,6 +243,5 @@ if __name__ == '__main__':
             'spacing_expected': [x[9] for x in all_full_routes],
             }
 
-    print "Total data points: ",len(data_map['stop_name'])
     io.savemat(outfilename, data_map, oned_as = 'row')
     io.savemat("full_routes", full_route_data_map, oned_as = 'row')

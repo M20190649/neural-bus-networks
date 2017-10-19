@@ -10,7 +10,7 @@ num_predictions = 10
 
 dataset_errors = []
 
-datasets = ["full_routes.mat","full_routes_2.mat"]
+datasets = ["../data/full_routes.mat","../data/full_routes_2.mat"]
 for dataset in datasets
   errors = []
   for i in 1:num_predictions

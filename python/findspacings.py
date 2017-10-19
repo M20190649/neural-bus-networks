@@ -31,7 +31,7 @@ def dist(origin, destination, radius = 6371.392896):
     dlat = numpy.radians(lat2-lat1)
     dlon = numpy.radians(lon2-lon1)
     a = numpy.sin(dlat/2) * numpy.sin(dlat/2) + numpy.cos(numpy.radians(lat1)) \
-                                * numpy.cos(numpy.radians(lat2)) * numpy.sin(dlon/2) * numpy.sin(dlon/2)
+            * numpy.cos(numpy.radians(lat2)) * numpy.sin(dlon/2) * numpy.sin(dlon/2)
     c = 2 * numpy.arctan2(numpy.sqrt(a), numpy.sqrt(1-a))
     d = radius * c
     return d
@@ -46,7 +46,7 @@ def GetAllIntervalData(VehicleLocations, route=1, direction='1_1_var0', position
     """
     #Defaults
     #Get data from
-#   http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=mbta&r=64
+    #   http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=mbta&r=64
     # 1 bus, inbound, at 84 Mass Ave
 
     # 1 bus, outbound, at 84 Mass Ave
@@ -176,7 +176,7 @@ if __name__ == '__main__':
         all_spacings += list(spacings)
         all_times += list(times)
     if True:#doWrite:
-            import scipy.io
+        import scipy.io
             data_dict = {'gaps': all_spacings, 'timestamps': all_times}
             scipy.io.savemat('data.mat', data_dict, oned_as = 'row')
     h5file.close()
