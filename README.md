@@ -15,6 +15,3 @@ This data analysis project was inspired by work in random matrix theory studying
 [ks00]: http://iopscience.iop.org/0305-4470/33/26/102/ "The statistical properties of the city transport in Cuernavaca (Mexico) and random matrix ensembles"
 
 *Caveat: these scripts are under active development.*
-
-
-These scripts are licensed under the MIT License, as described in LICENSE.md.
