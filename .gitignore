@@ -1,5 +1,6 @@
 *.h5
 *.mat
 *.pyc
-julia_id_rsa
-
+.tags
+.python-version
+data
