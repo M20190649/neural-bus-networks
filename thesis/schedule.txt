@@ -1,0 +1,62 @@
+Week 1: Data
+
+To Do
+X Overview of thesis requirements
+X Create schedule of tasks
+X Format latex template
+X Related Work
+    X Select Papers to review
+    X Overview
+    X Classical
+        X Historical
+        X Statistical
+    X Machine Learning
+        X Kernel
+        X Neural Network
+        X Hybrid
+    X Advanced models
+O Introduction
+    O Why is it a problem
+    O Describe why it's a hard problem
+    O Vision for the future/Ideal solutions
+O Approach: Data
+
+Tasks
+O Interpolation
+O Review python scripts and data
+O Create visualizations of data
+O Analyze and describe error
+O Generate historic statistics
+
+Week 2: Models
+
+Tasks
+O Linear
+O Implement feed forward
+O CNN
+O RNN
+O Visualizations of models
+O Advanced techniques (eg. attention, bi-directional LSTM)
+O Approach: Models
+
+Week 3: Training
+
+Tasks
+O Determine how to partition data
+O Approach: Training (describe dev/training environment)
+O Generate convergence plots
+O Generate error plots
+
+Week 4: Evaluation
+
+Tasks
+
+O Approach: Inference
+O Advanced evaluation/error metrics (TSNE, clustering)
+O Conclusion
+O Further Work
+O Abstract (150 word max)
+
+O Table of Contents
+O List of Figures
+O Bibliography

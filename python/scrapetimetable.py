@@ -31,6 +31,7 @@ def ReadMBTATimetable(route, direction, timing):
     }
 
     theURL = theURLTemplate % data
+    print(theURL)
     html_timetable = urllib2.urlopen(theURL).read()
     soup = BeautifulSoup(html_timetable, "html.parser")
     timetable = soup.find(id="timetable")

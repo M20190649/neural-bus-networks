@@ -177,6 +177,6 @@ if __name__ == '__main__':
         all_times += list(times)
     if True:#doWrite:
         import scipy.io
-            data_dict = {'gaps': all_spacings, 'timestamps': all_times}
-            scipy.io.savemat('data.mat', data_dict, oned_as = 'row')
+        data_dict = {'gaps': all_spacings, 'timestamps': all_times}
+        scipy.io.savemat('data.mat', data_dict, oned_as = 'row')
     h5file.close()

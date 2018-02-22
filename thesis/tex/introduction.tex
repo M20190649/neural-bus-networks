@@ -1,0 +1,106 @@
+\chapter{Introduction}
+
+\section{Traffic and Technology}
+
+- Traffic sucks
+
+Americans spend over 40 hours stuck in traffic a year \cite{traffic}.
+This costs the US \$121 billion dollars a year.
+Studies from The American Journal of Preventive Medicine have shown that commuting causes a range of negative health side effects \cite{trafficandhealth}.
+These effects include raised cholestrol, increased depression risk, increased anxiety, and decreased overall happiness.
+Commuting results in lower life satisfaction.
+Specifically riding a bus for 30 minutes or longer is connected to the lowest level of life satisfaction compared to other commutes.
+All groups including bike commuters experience reduced life satisfaction proportional to the length of the commute.
+In addition to the detrimental health effects of, road crashes result in 1.3 million deaths a year \cite{trafficdeaths}.
+An additional 20-50 million people are injured or disabled each year in road crashes.
+The statistics are worse in low income countries.
+
+- Environmental impact
+
+In addition to health effects, traffic has a strong impact on the environment.
+Transportation accounts for 30% of US greenhouse gas emissions.
+Road traffic also contributes to reduced air quality, traffic congestion and urban sprawl.
+
+- Self driving cars
+
+Technology can to a great extent solve some of these problems.
+Public transit can largely reduce the environmental impact of transporation.
+A full bus is 6 times more efficient than a single driver car \cite{trafficenv}.
+Additionally, buses emit a tenth of the hydrocarbons compared to single driver cars \cite{trafficenv}.
+Recent years have also shown an increase in electric vehicles, which when combined with sustainable energy practices can drastically reduce emissions.
+
+Furthermore, the advent of autonomous cars promises a future of safer roads and vastly fewer road crash deaths.
+Interestingly, car ownership shows signs of decline in the US, with millennials waiting longer before buying cars \cite{cars}.
+Ride sharing services like Uber are transforming mobility and the auto industry as a whole.
+An increase in sensors and connectivity of cars allows large scale optimization which can decrease travel times for users.
+All of these technical innovations make it cheaper, safer and more convenient for people to use modern forms of transporation.
+However, as mobility becomes available to more people, problems regarding traffic congestion will get worse, not better.
+
+- There will be more traffic
+
+The problem of traffic is also not going anywhere.
+Over the next 30 years, the US population is estimated to increase by 70 million \cite{traffic}.
+Larger populations, and movement into urban and suburban areas exacerbates the issue.
+Traffic in other countries is even worse.
+India's transportation system is in crisis with booming population growth in urban areas and increasing vehicle numbers are overwhelming transporation infrastructure.
+Clearly, transit technology needs to keep up with exploding demand.
+
+- Coordinating roads and traffic networks is important
+
+One obvious way to reduce congestion is public transportation.
+However, the adoption level of public transit systems is very low.
+Only about 5% of US working commute to work with public transit \cite{Commute}.
+There are several reasons which cause people to prefer private cars to public transit.
+Outside of urban areas, public transit can be unavailable or impractical.
+Bus riders have to deal with traffic, transfers, and unreliable schedules.
+These factors make buses much less convenient than private autos, despite the clear environmental and economic benefits.
+This research focuses on improving the reliability of buses for riders by using neural networks to predict bus arrival times.
+
+
+\section{Bus Network Characteristics}
+Describe why it's a hard problem
+
+- Large number of factors
+
+Traffic networks in general are difficult to model.
+Part of this has to do with the stochastic nature of bus networks.
+Traffic conditions depend on countless variables including weather, driver behavior, time of day, and construction.
+Although some of these variables are easy to measure, others are latent.
+Furthermore, the relationship between the variables is complicated.
+The requires the use of complex models and large amounts of data.
+
+- Describe other bus related features
+
+Besides the sheer number of variables, bus networks also exhibit some behavior which makes them different from typical car networks.
+For example, buses trajectories are affected by passenger demand.
+The amount of time a bus spends waiting at a stop depends on how many people get off and on at that stop.
+Furthermore, a bus may not make all of its stops along a route, and stops may move over time.
+Buses also have a schedule to follow, whereas cars do not.
+For this reason, some buses will slow down if ahead of schedule to allow other buses to catch up.
+These features make bus networks more complex, but they also provide structure for models to learn.
+
+- Clumping
+
+An interesting emergent property of bus networks is clumping.
+This term refers to the phenomenon of buses along a route to tend to clump together in groups after starting at uniform intervals.
+The effect is caused by the relationship between buses along a route and the respective riders.
+Consider the following scenario.
+A bus misses a light, and therefore starts running behind schedule.
+At future stops, more passengers arrive due to the delay.
+The excess of passengers at future stops makes the bus slow down even more, because it takes longer to pick up more passengers.
+This produces a positive feedback loop, which causes slow buses to become slower.
+Eventually, the previous bus will catch up, causing the buses to clump together.
+The opposite happens to a bus when it starts running ahead of schedule, meaning fast buses get faster.
+This exacerbates the issue of clumping.
+This complex interaction among buses along the same route requires modeling at a route level rather than a bus level.
+
+- High variance
+
+Another issue which arises studying bus networks is the natural randomness of traffic.
+Even with a perfect modeling scheme, there are always confounding factors.
+This results in a large variance which limits the theoretical best performance for prediction.
+
+\section{Applications}
+Vision for the future/Ideal solutions
+- What can you do with coordination large networks of cars
+

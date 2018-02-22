@@ -1,0 +1,11 @@
+Krbálek, Milan, and Petr Seba. "The statistical properties of the city transport in Cuernavaca (Mexico) and random matrix ensembles." Journal of Physics A: Mathematical and General 33.26 (2000): L229.
+
+This paper analyzes bus arrival times and tries to determine an underlying statistical model which could explain the data.  Interestingly, it found that the Gaussian Unitary Ensemble stemming from random matrix theory seems to fit the data well.  It is not at all obvious why this would be the case and suggests that more complicated models may be the best for making predictions about bus arrival times.  This study is interesting to my research because it suggests that the problem may not be trivial.
+
+Patnaik, Jayakrishna, et al. 2004. Estimation of Bus Arrival Times Using APC Data. Journal of Public Transportation, 7 (1): 1-20.
+
+This study acknowledges that large number of factors which affect bus arrival times including traffic congestion, ridership, intersection delays, and weather conditions. It attempts to create a model to decrease passenger wait time for buses using the Automatic Passenger Counting system in the northeaestern US.  Specifically it uses linear and non-linear regression techiniques.  This study will be interesting to use as a baseline with a simpler modeling technique.
+
+Chien, S., Ding, Y., and Wei, C. (2002). "Dynamic Bus Arrival Time Prediction with Artificial Neural Networks." J. Transp. Eng., 10.1061/(ASCE)0733-947X(2002)128:5(429), 429-438.
+
+This study used a pair of neural networks using link-based and stop-based data to predict bus arrival times.  They also implemented a real time adaptive algorithm which would correct for errors.  The study showed that the nueral networks with adaptive integration outperformed those without.  This study is relevant because I would like to use machine learning, specifically mixed models to try and improve upon the prediction accuracy.

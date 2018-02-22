@@ -1,0 +1,38 @@
+Abstract
+
+
+
+Problem Statement
+
+Commute times in the US have steadily increased over the past several decades, from a 22 minute average in 1980 to over 25 minutes is 2000, despite an increase in network capacity.(https://www.census.gov/prod/2011pubs/acs-15.pdf)  Part of this problem stems from the fact that workes primarily commute alone in private automobiles, with on 10.8 percent using public transportation.  Ironically, Americans support increased public transit spending at a rate of 70% (http://link.springer.com/article/10.1007%2Fs11116-014-9545-2#page-1).  Increasing usage of public transport is the key to decreased pollution, reduced traffic, and overall lower costs for consumers.  In order to close the gap, public transport needs to be as appealing as driving a private automobile.  One of the major obstacles standing in the way is the unpredictability of public transit arrival times.  Commuters need a reliable schedule in order to rely on public transit.
+
+In my project I will focus on predicting bus arrival times to decrease wait times for passengers.  Current research shows that prediction models can be valuable to passengers.  My research will tackle the problem of predicting network traffic.  This has applications outside of public transportation including in communication and information networks.
+
+Related Work
+
+
+
+Proposed Solution
+
+Given an accurate model of the transit system, passengers can be informed about bus arrival times and therefore decrease their wait time. The MBTA dataset contains several years of gps data for all the buses in Boston.  I will focus on the 1 bus for my modeling.  By comparing the gps data with the route information posted on the MBTA website, I will be able to extract information including the arrival time at each stop, how late or early each bus was, the wait time at each stop, and the interval between adjacent stops.  These will be my primary input features to the neural net.  This particular bus has 28 stops including 9 time check stops for which schedule times are posted.
+
+Model generation will consist of two stages.  In the training stage the model will be initialized and will generate predictions for each of the input vectors.  Predictions from the model can then be compared to the actual arrival time in order to backpropogate the signal.  After the training stage is complete I will validate the model via another set of input vectors for which the actual arrival time is hidden.  This stage will be used to estimate the accuracy of the model on novel data.
+
+I would like to inject a few different statistical models into the neural net through mixed models.  Specifically I will use Poissant distribution and Gaussian Unitary Ensemble (GUE) and evaluate their accuracy.  The Poissant distribution is natural for a stochastic process like bus arrival times, and the GUE Ensemble shows promise due to the work in the field.  Nevertheless, the GUE has not be incorporated into a neural net by any current study.  Part of the reason may be the lack of access to tools for these more complicated models. As a result, I will be implementing the algorithms myself in Julia.
+
+I would like to cluster according to time of day, because the 1 bus has different schedules during peak hours.  I will independently generate the models be each of the periods of the day, and compare this with the performance of the unclustered model.  Due to the size of the MBTA data, I will be able to increase the number of parameters in my model with less fear of overfitting.
+
+Evaluation Plan
+
+My goal is to do accurate prediction on bus arrival times, so the key metric I would like to measure is error from the predicted to the actual values. Specifically I will use mean square error and mean absolute error which are appropriate in this case. I will also look in to the validity of other accuracy measure including AUC and F1 score, although this will require choosing cutoffs for prediction validity.  Because this is a machine learning problem, I will measure the training as well as validation error, obviously with the emphasis being on validation error. The error will be a function of several factors, one of which is the model. I want to standardize a training and validation set so that I can compare models. Additionally I would like to measure how different sizes of training data affect the validation accuracy. Finally I want to look into the computation time for each of the models.  In order to predict bus arrival times and pass these predictions on the passengers, model prediction needs to be fast.  While there are many other factors I could measure I will limit my scope to these three factors.
+
+In order to measure the error, I will need to frame my models in a way which generate predictions for bus arrival times in a structured way. In order for the error comparisons to be valid I am going to identify a subset of the MBTA data for training and another subset for validation. I want to make these sets rather large in order to avoid overfitting. As long as my models can generate predictions for the input set in a consistent way, it will be simple to measure the error for each model and compare them. Some of my models may not require the training data, and in that case I will compare their error to the validation error of the other models.
+
+Conclusion
+
+
+
+Figures
+
+
+

@@ -1,0 +1,372 @@
+@preamble{ "\newcommand{\noopsort}[1]{} "
+# "\newcommand{\printfirst}[2]{#1} "
+# "\newcommand{\singleletter}[1]{#1} "
+# "\newcommand{\switchargs}[2]{#2#1} " }
+
+INTRODUCTION
+
+@misc{Commute,
+author = {Chase Saw},
+title = {{What Percentage of Americans Use Public Transit to Get to Work?}},
+url = {http://overflow.solutions/demographic-data/what-percentage-of-americans-use-public-transit-to-get-to-work/},
+year = {2017}
+}
+
+@misc{traffic,
+author = {US Department of Transportation},
+title = {{Beyond Traffic: 2045 Final Report}},
+url = {https://www.transportation.gov/policy-initiatives/beyond-traffic-2045-final-report},
+year = {2017}
+}
+
+@misc{trafficandhealth,
+author = {Carolyn Kylstra},
+title = {{10 Things Your Commute Does to Your Body}},
+url = {http://time.com/9912/10-things-your-commute-does-to-your-body/},
+year = {2014}
+}
+
+@misc{trafficdeaths,
+author = {Association for Safe International Road Travel},
+title = {{Annual Global Road Crash Statistics}},
+url = {http://asirt.org/initiatives/informing-road-users/road-safety-facts/road-crash-statistics},
+year = {2018}
+}
+
+@misc{trafficenv,
+author = {DART First State},
+title = {{The Environmental Benefits of Riding Public Transit}},
+url = {http://www.dnrec.delaware.gov/dwhs/info/Pages/OzonePublicTrans.aspx},
+year = {2018}
+}
+
+@misc{cars,
+author = {DART First State},
+title = {{Millennials and car ownership? It's complicated}},
+url = {http://www.latimes.com/business/autos/la-fi-hy-millennials-cars-20161223-story.html},
+year = {2016}
+}
+
+RELATED WORK
+
+Bus Papers:
+
+Original Cuernavaca
+@article{krbalek2000statistical,
+  title={The statistical properties of the city transport in Cuernavaca (Mexico) and random matrix ensembles},
+  author={Krb{\'a}lek, Milan and Seba, Petr},
+  journal={Journal of Physics A: Mathematical and General},
+  volume={33},
+  number={26},
+  pages={L229},
+  year={2000},
+  publisher={IOP Publishing}
+}
+
+
+Cuernavaca anaylsis
+@article{baik2006model,
+  title={A model for the bus system in Cuernavaca (Mexico)},
+  author={Baik, Jinho and Borodin, Alexei and Deift, Percy and Suidan, Toufic},
+  journal={Journal of Physics A: Mathematical and General},
+  volume={39},
+  number={28},
+  pages={8965},
+  year={2006},
+  publisher={IOP Publishing}
+}
+
+GUE
+@article{fyodorov2005introduction,
+  title={Introduction to the random matrix theory: Gaussian unitary ensemble and beyond},
+  author={Fyodorov, Yan V},
+  journal={London Mathematical Society Lecture Note Series},
+  volume={322},
+  pages={31},
+  year={2005},
+  publisher={Cambridge University Press}
+}
+
+GUE in NY too
+https://arxiv.org/pdf/1703.02537.pdf
+@article{jagannath2017random,
+  title={Random matrices and the New York City subway system},
+  author={Jagannath, Aukosh and Trogdon, Thomas},
+  journal={arXiv preprint arXiv:1703.02537},
+  year={2017}
+}
+
+Overview of all modeling techniques for predicting arrival times
+http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7877384
+@inproceedings{choudhary2016real,
+    title={Real time prediction of bus arrival time: A review},
+    author={Choudhary, Rubina and Khamparia, Aditya and Gahier, Amandeep Kaur},
+    booktitle={Next Generation Computing Technologies (NGCT), 2016 2nd International Conference on},
+    pages={25--29},
+    year={2016},
+    organization={IEEE}
+}
+
+Another review, slightly more coherent
+https://www.researchgate.net/profile/Metin_Zontul/publication/290447130_Urban_bus_arrival_time_prediction_A_review_of_computational_models/links/56992ef808aeeea98594613e.pdf
+@article{altinkaya2013urban,
+  title={Urban bus arrival time prediction: A review of computational models},
+  author={Altinkaya, Mehmet and Zontul, Metin},
+  journal={International Journal of Recent Technology and Engineering (IJRTE)},
+  volume={2},
+  number={4},
+  pages={164--169},
+  year={2013}
+}
+
+Historic data
+http://ieeexplore.ieee.org/document/6957960/
+@inproceedings{maiti2014historical,
+    title={Historical data based real time prediction of vehicle arrival time},
+    author={Maiti, Santa and Pal, Arpan and Pal, Arindam and Chattopadhyay, Tanushyam and Mukherjee, Arijit},
+    booktitle={Intelligent Transportation Systems (ITSC), 2014 IEEE 17th International Conference on},
+    pages={1837--1842},
+    year={2014},
+    organization={IEEE}
+}
+
+Linear vs historical vs NN
+http://ieeexplore.ieee.org/document/1399041/
+@inproceedings{jeong2004bus,
+    title={Bus arrival time prediction using artificial neural network model},
+    author={Jeong, Ranhee and Rilett, R},
+    booktitle={Intelligent Transportation Systems, 2004. Proceedings. The 7th International IEEE Conference on},
+    pages={988--993},
+    year={2004},
+    organization={IEEE}
+}
+
+Time series
+http://trrjournalonline.trb.org/doi/abs/10.3141/1676-23
+@article{d1999travel,
+  title={Travel-time prediction for freeway corridors},
+  author={D'Angelo, Matthew and Al-Deek, Haitham and Wang, Morgan},
+  journal={Transportation Research Record: Journal of the Transportation Research Board},
+  number={1676},
+  pages={184--191},
+  year={1999},
+  publisher={Transportation Research Board of the National Academies}
+}
+
+Regression model
+https://ascelibrary.org/doi/abs/10.1061/41127(382)277
+@incollection{sun2010bus,
+  title={Bus Arrival Time Prediction Model Study in APTS},
+  author={Sun, Wenxia and Chen, Pei and Song, Ti and Wang, Qiulan},
+  booktitle={ICCTP 2010: Integrated Transportation Systems: Green, Intelligent, Reliable},
+  pages={2597--2605},
+  year={2010}
+}
+
+Kalman filter model
+https://pdfs.semanticscholar.org/32fe/74d12d110f75ea18813f9a8d20d83755529c.pdf
+@article{zaki2013online,
+    title={Online bus arrival time prediction using hybrid neural network and Kalman filter techniques},
+    author={Zaki, M and Ashour, I and Zorkany, M and Hesham, B},
+    journal={International Journal of Modern Engineering Research},
+    volume={3},
+    number={4},
+    pages={2035--2041},
+    year={2013}
+}
+
+Most cited NN bus paper
+https://ascelibrary.org/doi/pdf/10.1061/(ASCE)0733-947X(2002)128%3A5(429)
+@article{chien2002dynamic,
+    title={Dynamic bus arrival time prediction with artificial neural networks},
+    author={Chien, Steven I-Jy and Ding, Yuqing and Wei, Chienhung},
+    journal={Journal of Transportation Engineering},
+    volume={128},
+    number={5},
+    pages={429--438},
+    year={2002},
+    publisher={American Society of Civil Engineers}
+}
+
+NN for transporation
+https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=Evaluation+of+artificial+neural+networks+applications+in+transportation+engineering.&btnG=
+@article{faghri1992evaluation,
+  title={Evaluation of artificial neural network applications in transportation engineering},
+  author={Faghri, Ardeshir and Hua, Jiuyi},
+  journal={Transportation Research Record},
+  volume={1358},
+  pages={71},
+  year={1992},
+  publisher={NATIONAL ACADEMY OF SCIENCES}
+}
+
+Bus route simulator
+@article{ding2000simulating,
+  title={Simulating bus operations with enhanced corridor simulator: Case study of New Jersey transit bus route 39},
+  author={Ding, Yuqing and Chien, Steven and Zayas, Noreen},
+  journal={Transportation Research Record: Journal of the Transportation Research Board},
+  number={1731},
+  pages={104--111},
+  year={2000},
+  publisher={Transportation Research Board of the National Academies}
+}
+
+NN is a universal approximator
+@article{hornik1989multilayer,
+  title={Multilayer feedforward networks are universal approximators},
+  author={Hornik, Kurt and Stinchcombe, Maxwell and White, Halbert},
+  journal={Neural networks},
+  volume={2},
+  number={5},
+  pages={359--366},
+  year={1989},
+  publisher={Elsevier}
+}
+
+General explanation of neural networks
+@book{demuth2014neural,
+  title={Neural network design},
+  author={Demuth, Howard B and Beale, Mark H and De Jess, Orlando and Hagan, Martin T},
+  year={2014},
+  publisher={Martin Hagan}
+}
+
+Mobile phone approach, popular and newer
+http://www.cs.odu.edu/~cs441/Papers/sense-002.pdf
+@inproceedings{zhou2012long,
+    title={How long to wait?: predicting bus arrival time with mobile phone based participatory sensing},
+    author={Zhou, Pengfei and Zheng, Yuanqing and Li, Mo},
+    booktitle={Proceedings of the 10th international conference on Mobile systems, applications, and services},
+    pages={379--392},
+    year={2012},
+    organization={ACM}
+}
+
+
+Kernel regression
+http://ieeexplore.ieee.org/abstract/document/6338767/
+@inproceedings{sinn2012predicting,
+  title={Predicting arrival times of buses using real-time GPS measurements},
+  author={Sinn, Mathieu and Yoon, Ji Won and Calabrese, Francesco and Bouillet, Eric},
+  booktitle={Intelligent Transportation Systems (ITSC), 2012 15th International IEEE Conference on},
+  pages={1227--1232},
+  year={2012},
+  organization={IEEE}
+}
+
+Original RVM paper
+@misc{tipping2003relevance,
+  title={Relevance vector machine},
+  author={Tipping, Michael},
+  year={2003},
+  month=oct # "~14",
+  publisher={Google Patents},
+  note={US Patent 6,633,857}
+}
+
+RVM/SVM
+http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7744554
+@article{yu2017probabilistic,
+    title={Probabilistic Prediction of Bus Headway Using Relevance Vector Machine Regression},
+    author={Yu, Haiyang and Wu, Zhihai and Chen, Dongwei and Ma, Xiaolei},
+    journal={IEEE Transactions on Intelligent Transportation Systems},
+    volume={18},
+    number={7},
+    pages={1772--1781},
+    year={2017},
+    publisher={IEEE}
+}
+
+Hybrid of NN and fuzzy clustering
+https://link.springer.com/chapter/10.1007/978-3-319-19548-3_12
+@inproceedings{khetarpaul2015bus,
+    title={Bus Arrival Time Prediction Using a Modified Amalgamation of Fuzzy Clustering and Neural Network on Spatio-Temporal Data},
+    author={Khetarpaul, Sonia and Gupta, SK and Malhotra, Shikhar and Subramaniam, L Venkata},
+    booktitle={Australasian Database Conference},
+    pages={142--154},
+    year={2015},
+    organization={Springer}
+}
+
+Original LSTM paper
+https://www.mitpressjournals.org/doi/abs/10.1162/neco.1997.9.8.1735
+@article{hochreiter1997long,
+  title={Long short-term memory},
+  author={Hochreiter, Sepp and Schmidhuber, J{\"u}rgen},
+  journal={Neural computation},
+  volume={9},
+  number={8},
+  pages={1735--1780},
+  year={1997},
+  publisher={MIT Press}
+}
+
+RNN paper
+https://www.ijarcce.com/upload/august/3-Public%20transport%20Bus%20Arrival%20Time%20.pdf
+@article{raut2012public,
+    title={Public transport bus arrival time prediction with seasonal and special emphasis on weather compensation changes using RNN},
+    author={Raut, Ranjana Dinakar and Goyal, Vineet Kumar},
+    journal={International Journal of Advanced Research in Computer and Communication Engineering},
+    volume={1},
+    number={6},
+    pages={378--382},
+    year={2012}
+}
+
+General Modeling Papers:
+
+Overview of deep learning from the rock stars
+http://pages.cs.wisc.edu/~dyer/cs540/handouts/deep-learning-nature2015.pdf
+@article{lecun2015deep,
+    title={Deep learning},
+    author={LeCun, Yann and Bengio, Yoshua and Hinton, Geoffrey},
+    journal={Nature},
+    volume={521},
+    number={7553},
+    pages={436--444},
+    year={2015},
+    publisher={Nature Research}
+}
+
+
+RNN for time series forecasting
+https://arxiv.org/pdf/1407.5949.pdf
+@article{prasad2014deep,
+    title={Deep recurrent neural networks for time series prediction},
+    author={Prasad, Sharat C and Prasad, Piyush},
+    journal={arXiv preprint arXiv:1407.5949},
+    year={2014}
+}
+
+CNN for time series forecasting
+https://arxiv.org/abs/1703.04691
+@article{borovykh2017conditional,
+    title={Conditional Time Series Forecasting with Convolutional Neural Networks},
+    author={Borovykh, Anastasia and Bohte, Sander and Oosterlee, Cornelis W},
+    journal={arXiv preprint arXiv:1703.04691},
+    year={2017}
+}
+
+Wave net
+http://onlinelibrary.wiley.com/doi/10.1002/aic.690390108/full
+@article{bakshi1993wave,
+  title={Wave-net: A multiresolution, hierarchical neural network with localized learning},
+  author={Bakshi, Bhavik R and Stephanopoulos, George},
+  journal={AIChE Journal},
+  volume={39},
+  number={1},
+  pages={57--81},
+  year={1993},
+  publisher={Wiley Online Library}
+}
+
+Example of CNN for time series prediction
+http://www.aaai.org/ocs/index.php/IJCAI/IJCAI15/paper/download/10710/11297
+@inproceedings{yang2015deep,
+    title={Deep Convolutional Neural Networks on Multichannel Time Series for Human Activity Recognition.},
+    author={Yang, Jianbo and Nguyen, Minh Nhut and San, Phyo Phyo and Li, Xiaoli and Krishnaswamy, Shonali},
+    booktitle={IJCAI},
+    pages={3995--4001},
+    year={2015}
+}
+
