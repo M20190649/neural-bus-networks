@@ -16,17 +16,15 @@ X Related Work
         X Hybrid
     X Advanced models
 O Introduction
-    O Why is it a problem
-    O Describe why it's a hard problem
+    X Why is it a problem
+    X Describe why it's a hard problem
     O Vision for the future/Ideal solutions
 O Approach: Data
-
-Tasks
-O Interpolation
-O Review python scripts and data
-O Create visualizations of data
-O Analyze and describe error
-O Generate historic statistics
+    O Interpolation
+    O Review python scripts and data
+    O Create visualizations of data
+    O Analyze and describe error
+    O Generate historic statistics
 
 Week 2: Models
 
