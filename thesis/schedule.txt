@@ -15,10 +15,10 @@ X Related Work
         X Neural Network
         X Hybrid
     X Advanced models
-O Introduction
+X Introduction
     X Why is it a problem
     X Describe why it's a hard problem
-    O Vision for the future/Ideal solutions
+    X Vision for the future/Ideal solutions
 O Approach: Data
     O Interpolation
     O Review python scripts and data
