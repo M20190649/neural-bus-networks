@@ -1,6 +1,5 @@
 Week 1: Data
 
-To Do
 X Overview of thesis requirements
 X Create schedule of tasks
 X Format latex template
@@ -19,12 +18,22 @@ X Introduction
     X Why is it a problem
     X Describe why it's a hard problem
     X Vision for the future/Ideal solutions
+
+To Do
 O Approach: Data
-    O Interpolation
-    O Review python scripts and data
-    O Create visualizations of data
-    O Analyze and describe error
-    O Generate historic statistics
+O Interpolation
+O Review python scripts and data
+    O Add new features, namely time
+O Create visualizations of data
+    O Trajectory
+    O Histograms, show multimodal
+    O GPS Maps are super cool
+O Analyze and describe error
+    O Show some gps data, show missing data
+    O Noisy GPS data
+O Generate historic statistics
+    O Look at storms and show increased travel time
+    O Show increase of travel over time
 
 Week 2: Models
 

@@ -6,6 +6,7 @@ using HDF5
 function get_routes(file, training_proportion, num_input_stops, stops_ahead_to_predict, stops_to_predict)
   total_stops = 22
   vars = matread(file)
+  print(keys(vars))
   all_data_points = Array{Dict{String,Any}}(length(vars["time"]))
   for j in [1:length(vars["time"]);]
     data_point = Dict{String,Any}()
