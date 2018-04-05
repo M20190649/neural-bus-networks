@@ -7,6 +7,7 @@ import tables
 
 
 
+
 #####################
 import signal
 
@@ -128,7 +129,8 @@ def ExtractArrivalIntervals(trajectories, position, doWrite = True):
                     #Update - bus moved closer
                     data[theVehicle].pop()
                     data[theVehicle].append((theTime, theDistance))
-            else:
+                else: # The bus has passed the stop
+            else: # Let's interpolate
                 data[theVehicle].append((theTime, theDistance))
         else:
             data[theVehicle] = [(theTime, theDistance)]
