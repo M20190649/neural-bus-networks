@@ -22,6 +22,7 @@ function get_routes(file, training_proportion, num_input_stops, stops_ahead_to_p
   for j in 1:N
     full_route = view(full_routes,:,j)
     # Use deltas from the beginning of the route instead of the actual unix time
+    # TODO add time and day of week.  filter out any with zero time, also should tweak the distance threshold
     times = convert(Array{Float64},[x["time"]-full_route[1]["time"] for x in full_route])
     deltas = diff(times)
     input_times = deltas[1:num_input_stops]
@@ -42,3 +43,5 @@ function get_routes(file, training_proportion, num_input_stops, stops_ahead_to_p
   output["test_output_data"] = test_output_data
   return output
 end
+
+routes = get_routes("/Volumes/Infinity/mbta/h5/2013/mbta_trajectories_2013_48.mat",0.8,12,1,2);

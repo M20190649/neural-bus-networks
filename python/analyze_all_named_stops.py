@@ -79,7 +79,6 @@ def processData(h5filenames):
         name = match['title']
         all_bus_stops.append((coordinates, name))
 
-
     all_data = []
     for file_index,h5filename in enumerate(h5filenames):
         #Extract earliest and latest time stamps for the data
@@ -114,7 +113,7 @@ def processData(h5filenames):
                     for idx, s in enumerate(spacings):
                         thetime = datetime.datetime.fromtimestamp(times[idx]).time()
                         actual_date_time = datetime.datetime.fromtimestamp(times[idx])
-                        all_data.append([this_bus_stop_name, stop_idx, vehicle_ids[idx], schedule_code, times[idx]])
+                        all_data.append([this_bus_stop_name, stop_idx, vehicle_ids[idx], schedule_code, times[idx],schedule_code])
                     thedate = thenextday #Iterate
     #Save data
         data_map = {

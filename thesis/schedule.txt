@@ -27,7 +27,7 @@ O Review python scripts and data
 O Create visualizations of data
     O Trajectory
     O Histograms, show multimodal
-    O GPS Maps are super cool
+    X GPS Maps are super cool
 O Analyze and describe error
     O Show some gps data, show missing data
     O Noisy GPS data

@@ -1,12 +1,44 @@
 \chapter{Methods}
 \section{Data}\label{data}
 
-\subsection{Popular Features}
+\subsection{Dataset}
+
+The dataset for this research comes from the Massachusetts Bay Transportation Authority (MBTA).  The data is publically available and consists of the following
+
+\begin{itemize}
+  \item GPS data for buses, consisting of latitude, longitude, route, and route direction
+  \item Route data, describing the GPS location of stops along a route
+  \item Bus timetable information, which shows the times when a bus arrives at each stop in a route
+  \item Bus metadata
+\end{itemize}
+
+Buses, routes and stops are described by ids.  Bus stops also have human readable names indicating their location.
+The dataset spans several years, and includes all of the buses and routes in Boston.
+This dataset is unique from previous research in its extent both in size and duration.
+Previous studies use several months of data, whereas this dataset allows the analysis of longer term trends, including seasonal trends.
+
+Figure~\ref{gps} shows GPS data for Route 1.  The route starts in Cambridge at Massachusetts Avenue and Holyoke Street, and ends in Boston at Dudley Station.
+The GPS data is fairly accurate for the most part.
+However, in cities like Boston, GPS data suffers from an issue known as urban canyons.
+This occurs on relatively narrow streets with very tall skyscrapers, where a canyon effect is created.
+The large buildings obscure satellite signals, creating very noisy GPS signals.
+Certain streets in Boston suffer from this issue, however Route 1 does not touch those streets, results in relatively clean GPS data.
+All of the data points are well localized to the street.
+
+\begin{figure}
+\includegraphics[width=\linewidth]{images/map.png}
+%\vspace{2.4in}
+\caption{GPS Data from Route 1 serving Cambridge and West Boston}
+\label{gps}
+\end{figure}
+%\clearpage
+%\newpage
+
+\subsection{Features}
 
 The following are a number of features which are commonly used as variables to model bus networks.
-Many of the features can be extracted from onboard GPS, or from publically available data sources.
 
-\begin{enumerate}
+\begin{itemize}
   \item Arrival Time: Time the bus arrives at a stop
   \item Travel Time: The difference in arrival times between two stops
   \item Dwell Time: The amount of time a bus spends at a stop
@@ -17,7 +49,32 @@ Many of the features can be extracted from onboard GPS, or from publically avail
   \item Traffic Congestion
   \item Day of Week
   \item Month of Year
-\end{enumerate}
+\end{itemize}
+
+The arrival time at each stop is computed by comparing the GPS location of a bus to the GPS location of the bus.
+Travel time can them be trivially computed by taking the difference between two arrival times.
+Schedule adherence is computed by comparing the arrival time of the bus the closest listed arrival time.
+Other features are either derived from the raw data or pulled from outside sources.
+
+\subsection{Distribution of Arrival Times}
+
+Figure~\ref{dist} is a histogram of the difference in arrival times between adjacent buses at a particular stop on Route 1.
+Three plots are overlain on the distribution.
+If the buses ran perfectly on schedule, the distribution should be concentrated about the mean, indicated by the dotted black line.
+If the buses are perfectly random and independent, the distribution should follow a Poisson distrubution.
+However buses are not independent.
+In particular, a bus will not pass another bus, which leads to the high concentration about zero in the distribution.
+This effect is compounded bus clumping.
+This effect is well captured by an exponential distrubtion.
+More complicated distribution like the GUE have been used to describe intervales between buses.
+A study out of Cuernavaca, Mexico \cite{baik2006model} first identified this effect, and the same effect is observed in the New York public transit system.
+
+\begin{figure}
+\includegraphics[width=\linewidth]{images/dist.png}
+%\vspace{2.4in}
+\caption{Distribution of intervals between bus arrival times at Newbury and Mass. Ave.}
+\label{dist}
+\end{figure}
 
 \section{Models}\label{models}
 \subsection{Linear}
