@@ -1,4 +1,6 @@
 import gmplot
+import scrapetimetable
+import datetime
 import tables
 from collections import OrderedDict
 import math
@@ -36,7 +38,6 @@ def plot_map(lats,lons):
 def gps_to_xy(lats,lons):
     # radius of earth, pretty rough though
     R = 6371
-    # print(R*boston_lat)
     xs = [-R*lon*math.cos(path_lats[0]*180/math.pi)-boston_y for lon in lons]
     ys = [R*lat-boston_y for lat in lats]
     return xs,ys
@@ -77,9 +78,9 @@ def closest_point(a, b, p):
     proj = np.dot(a_to_p,a_to_b)/np.linalg.norm(a_to_b)
     return np.add(a,proj*a_to_b/np.linalg.norm(a_to_b)), proj
 
-def get_trajectory(filename):
+def get_trajectory(filename,bus):
     route = 1
-    bus = bus_ids[11]
+    # bus = bus_ids[11]
     direction = '1_1_var0'
     h5file = tables.open_file(filename)
     VehicleLocations = h5file.root.VehicleLocations
@@ -87,15 +88,15 @@ def get_trajectory(filename):
     trajectories = VehicleLocations.where(queryString)
     queryResults = [(timePoint['time'], timePoint['vehicleID'], timePoint['latitude'], timePoint['longitude']) for timePoint in trajectories]
     queryResults = sorted(queryResults,key=lambda x:x[0])
-    # d = [2] + np.diff([x[0] for x in queryResults])
-    # filtered = [lambda x: d[x[0]] > 2 ,enumerate(queryResults)]
+    filtered= queryResults
     filtered = filter(lambda x: x[1] == bus, queryResults)
-    # removes duplicates
     lats = [x[2] for x in filtered]
     lons = [x[3] for x in filtered]
     xs,ys = gps_to_xy(lats,lons)
-    m = min([x[0] for x in filtered])
-    ts = [x[0]-m for x in filtered]
+    # m = 0
+    # if(len(filtered)>0):
+        # m = min([x[0] for x in filtered])
+    ts = [x[0] for x in filtered]
     return xs,ys,ts
 
 def get_cuts(xs,ys,ts):
@@ -113,27 +114,106 @@ def get_cuts(xs,ys,ts):
     cuts.append(len(xs))
     return cuts
 
-def sanitize(percentages,ts):
-    print("\n")
-    print(len(percentages))
-    out = [(percentages[0],ts[0])]
-    for i in range(len(ts)-1):
+def sanitize(times,percentages):
+    out = [(percentages[0],times[0])]
+    for i in range(len(times)-1):
         p1 = percentages[i]
         p2 = percentages[i+1]
-        t1 = ts[i]
-        t2 = ts[i+1]
-        speed = total_distance*(p2-p1)/(t2-t1)
-        # print(speed)
-        if p2 >= out[-1][0]:
+        t1 = times[i]
+        t2 = times[i+1]
+        if (t2-out[-1][1]) <= 0:
+            continue
+        speed = total_distance*(p2-out[-1][0])/(t2-out[-1][1])
+        if 0 <= speed < 0.7:
             out.append((p2,t2))
-    print(len(out))
+    percentages_out = [x[0] for x in out]
+    times_out = [x[1] for x in out]
+    return percentages_out,times_out
+
+def get_stops():
+    # Represents stops with location
+    bus_stop_data, directions = scrapetimetable.ReadRouteConfig(route = 1)
+    the_direction = "Inbound" # Or "Outbound"
+    tags = []
+    for direction in directions:
+        if direction[0]["name"] == the_direction:
+            tags = set([x["tag"] for x in direction[1:]])
+    bus_stop_data = filter(lambda x: x["tag"] in tags,bus_stop_data)
+    lats = [float(x["lat"]) for x in bus_stop_data]
+    lons = [float(x["lon"]) for x in bus_stop_data]
+    xs,ys = gps_to_xy(lats,lons)
+    pxs,pys = gps_to_xy(path_lats,path_lons)
+    l = map(lambda p: project(p[0],p[1],pxs,pys), zip(xs,ys))
+    stops = [x[0] for x in l]
+    percentages = [x[1] for x in l]
+    return stops, percentages
+
+_, stop_percentages = get_stops()
+def get_arrival_times(times,percentages):
+    current_stop = 0
+    out = []
+    i = 0
+    delta = 0.02
+    for stop,stop_percentage in enumerate(stop_percentages):
+        while i < len(percentages)-2 and percentages[i+1] < stop_percentage - delta:
+            i += 1
+        p1 = percentages[i]
+        p2 = percentages[i+1]
+        t1 = times[i]
+        t2 = times[i+1]
+        stop_str = "stop_" + str(stop)
+        if p1 - delta < stop_percentage < p1 + delta:
+            time = t1
+            out.append({stop_str:time})
+        elif p2 - delta < stop_percentage < p2 + delta:
+            time = t2
+            out.append({stop_str:time})
+        elif p1 <= stop_percentage <= p2:
+            # Just a little interpolation
+            time = t1 + (t2-t1)*(stop_percentage-p1)/(p2-p1)
+            out.append({stop_str:time})
     return out
 
+plot = False
+stops,stop_percentages = get_stops()
 
-# xs,ys = gps_to_xy(lats,lons)
-# ps = [project(x,y,xs,ys) for (x,y) in samples]
-# plt.plot(xs, ys, "o")
-# plt.plot([x[0] for x in samples],[x[1] for x in samples], "o")
-# plt.axis('equal')
-# plt.show()
-# plt.show()
+def get_features(file):
+    out = []
+    for bus in bus_ids:
+        xs,ys,ts = get_trajectory(file,bus)
+        cuts = get_cuts(xs,ys,ts)
+        path_x,path_y = get_path()
+        for i in range(len(cuts)-1):
+            cut_start = cuts[i]
+            cut_end = cuts[i+1]
+            l = cut_end - cut_start
+            if l < 100:
+                continue
+            xss = xs[cut_start:cut_end]
+            yss = ys[cut_start:cut_end]
+            tss = ts[cut_start:cut_end]
+            mt = min(tss)
+            tss = [x-mt for x in tss]
+            projection = [project(x,y,path_x,path_y) for (x,y) in zip(xss,yss)]
+            percentages = [p[1] for p in projection]
+            percentages, tss = sanitize(tss,percentages)
+            arrival_times = get_arrival_times(tss,percentages)
+            if plot:
+                if plot_route:
+                    pylab.plot(xss,yss,'bo-',label='trajectory')
+                else:
+                    max_t = max(tss)
+                    pylab.plot(tss,percentages,'bo-',label='data')
+                    for p in stop_percentages:
+                        pylab.plot((0, max_t), (p,p), 'r-')
+                pylab.legend()
+                pylab.axis('equal')
+                pylab.show()
+            date = datetime.datetime.fromtimestamp(mt).date()
+            time = datetime.datetime.fromtimestamp(mt).time()
+            schedule_code = scrapetimetable.TimeToScheduleCode(date)
+            day_of_week = date.weekday()
+            hour = time.hour
+            out.append(arrival_times+[{"bus_id":bus},{"schedule_code":schedule_code},{"day_of_week":day_of_week}, {"hour":hour}])
+    return out
+

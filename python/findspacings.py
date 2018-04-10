@@ -130,8 +130,6 @@ def ExtractArrivalIntervals(trajectories, position, doWrite = True):
                     data[theVehicle].pop()
                     data[theVehicle].append((theTime, theDistance))
                 else: # The bus has passed the stop
-            else: # Let's interpolate
-                data[theVehicle].append((theTime, theDistance))
         else:
             data[theVehicle] = [(theTime, theDistance)]
 
