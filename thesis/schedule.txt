@@ -20,24 +20,23 @@ X Introduction
     X Vision for the future/Ideal solutions
 
 To Do
-O Approach: Data
-O Interpolation
-O Review python scripts and data
-    O Add new features, namely time
-O Create visualizations of data
-    O Trajectory
-    O Histograms, show multimodal
+X Approach: Data
+X Interpolation
+X Review python scripts and data
+    X Add new features, namely time
+X Create visualizations of data
+    X Trajectory
     X GPS Maps are super cool
-O Analyze and describe error
-    O Show some gps data, show missing data
-    O Noisy GPS data
-O Generate historic statistics
-    O Look at storms and show increased travel time
-    O Show increase of travel over time
+
+X Analyze and describe error
+    X Show some gps data, show missing data
+    X Noisy GPS data
+
 
 Week 2: Models
 
 Tasks
+
 O Linear
 O Implement feed forward
 O CNN
@@ -45,14 +44,17 @@ O RNN
 O Visualizations of models
 O Advanced techniques (eg. attention, bi-directional LSTM)
 O Approach: Models
+O Approach: Training (describe dev/training environment)
+O Generate convergence plots
+O Generate error plots
+
+O Generate historic statistics
+    O Histograms, show multimodal
+    O Show increase of travel over time
 
 Week 3: Training
 
 Tasks
-O Determine how to partition data
-O Approach: Training (describe dev/training environment)
-O Generate convergence plots
-O Generate error plots
 
 Week 4: Evaluation
 
