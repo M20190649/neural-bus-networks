@@ -44,4 +44,4 @@ function get_routes(file, training_proportion, num_input_stops, stops_ahead_to_p
   return output
 end
 
-routes = get_routes("/Volumes/Infinity/mbta/h5/2013/mbta_trajectories_2013_48.mat",0.8,12,1,2);
+#routes = get_routes("/Volumes/Infinity/mbta/h5/2013/mbta_trajectories_2013_48.mat",0.8,12,1,2);
