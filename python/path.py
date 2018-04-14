@@ -8,6 +8,7 @@ from scipy import optimize
 import scipy.io as io
 import matplotlib.pyplot as plt
 import numpy as np
+plt.style.use('ggplot')
 
 # bus_ids = ['0497', '2191', '2194', '2297', '2134', '6005', '2204', '2206', '2229', '2149', '2223', '2220', '6009', '2248', '2151', '2174', '2175', '2245', '2178', '2179', '2266', '2241', '2242', '2243', '2288', '2281', '2283', '2284', '2285', '2286', '2287', '2183', '2186', '2185', '2189', '2260', '2123', '2125', '2124', '2126', '2219', '2235', '2237', '2159', '2147', '2146', '2169', '2142', '2251']
 
@@ -188,7 +189,7 @@ def get_arrival_times(times,percentages):
             out[stop_str]=time
     return out
 
-plot = False
+plot = True
 plot_route = False
 stops,stop_percentages = get_stops()
 
@@ -210,25 +211,46 @@ def get_features(file):
             yss = ys[cut_start:cut_end]
             tss = ts[cut_start:cut_end]
             mt = min(tss)
-            # tss = [x-mt for x in tss]
+            tss = [x-mt for x in tss]
             projection = [project(x,y,path_x,path_y) for (x,y) in zip(xss,yss)]
             percentages = [p[1] for p in projection]
             percentages, tss = sanitize(tss,percentages)
             arrival_times = get_arrival_times(tss,percentages)
             if plot:
+                name = "path"
                 if plot_route:
-                    plt.plot(xss,yss,'bo-',label='trajectory')
+                    plt.plot(xss,yss,'bo-',label='Trajectory')
                     plt.axis('equal')
+                    plt.xlabel("X position")
+                    plt.ylabel("Y position")
+                    plt.title("Trajectory along Route 1")
+                    first = True
+                    t0 = None
+                    for i in range(len(tss)):
+                        if i>20 and i% 8 == 0:
+                            if first:
+                                first = False
+                                t0 = tss[i]
+                            plt.annotate(str(int(tss[i]-t0))+" s", xy=(xss[i],yss[i]))
                 else:
+                    name = "interpolate"
                     max_t = max(tss)
-                    plt.plot(tss,percentages,'bo-',label='data')
+                    plt.plot(tss,percentages,'bo-',label='Trajectory')
+                    plt.ylabel("Percentage progress along route")
+                    plt.xlabel("Time")
+                    plt.title("1D postion along path with stops")
+                    k = 0
                     for p in stop_percentages:
-                        plt.plot((0, max_t), (p,p), 'r-')
-                    for k in arrival_times:
-                        if "stop" in k:
-                            plt.plot((arrival_times[k], arrival_times[k]), (0,1), 'g-')
+                        if k%5 == 0:
+                            plt.plot((0, max_t), (p,p), 'r-')
+                        k+=1
+                    # for k in arrival_times:
+                        # if "stop" in k:
+                            # plt.plot((arrival_times[k], arrival_times[k]), (0,1), 'g-')
                 plt.legend()
-                plt.show()
+                # plt.show()
+                plt.savefig("plots/"+name+"_"+str(i)+"_"+str(vehicleID)+".png")
+                plt.clf()
             date = datetime.datetime.fromtimestamp(mt).date()
             time = datetime.datetime.fromtimestamp(mt).time()
             schedule_code = scrapetimetable.TimeToScheduleCode(date)
