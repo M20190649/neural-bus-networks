@@ -267,4 +267,4 @@ def get_features(file):
     return out
 
 
-get_features("/Volumes/Infinity/mbta/h5/2014/mbta_trajectories_2014_15.h5")
+# get_features("/Volumes/Infinity/mbta/h5/2014/mbta_trajectories_2014_15.h5")
