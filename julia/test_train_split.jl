@@ -29,11 +29,6 @@ function contiguous(x, start)
   return idx
 end
 
-function pluck_times(x, start, n)
-  out = [x[string("stop_",i)] for i in start:start+n]
-  return out
-end
-
 function one_hot(element,list)
   o = zeros(length(list))
   o[findfirst(list,element)] = 1
@@ -70,7 +65,7 @@ function get_routes(file, training_proportion, num_input_stops, stops_ahead_to_p
   println(size(input_data))
   println(size(output_data))
   for (i,x) in enumerate(data)
-    times = pluck_times(x,START_STOP,total_stops_needed)
+    times = x["arrival_times"]
     travel_times = diff(times)
     input_times = travel_times[1:num_input_stops]
     output_times = travel_times[num_input_stops+stops_ahead_to_predict+1:end]
