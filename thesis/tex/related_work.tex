@@ -7,13 +7,13 @@ A deeper fundamental understanding of bus networks may be the key providing accu
 
 Krb{\'a}lek and Seba (2006) analyzed data from buses in Cuernavaca, Mexico, and found that the distribution of arrival times follows the Gaussian Unitary Ensemble (GUE)\cite{krbalek2000statistical}.
 The Gaussian Unitary ensemble is a distribution stemming from random matrix theory which model Hamiltonians without time reversal symmetry.
-For more on random matrix theory and the GUE, see Introduction to the random matrix theory: Gaussian unitary ensemble and beyond\cite{fyodorov2005introduction}.
+For more on random matrix theory and the GUE, see {\it Introduction to the random matrix theory: Gaussian unitary ensemble and beyond}\cite{fyodorov2005introduction}.
 
 The connection between random matrix theory and bus networks is not immediately clear.
 However, Baik, Borodin, Deift and Suidan (2006) developed a microscopic model for analyzing the bus system in Cuernavaca, Mexico \cite{baik2006model}.
 By introducing natural repulsion, Baik et al. are able to show how random matrix distributions follow.
 
-Interestingly, the same distrbution comes up in other networks as well.
+Interestingly, the same distribution comes up in other networks as well.
 Jagannath and Trogdon (2017) showed that the distribution of gaps between trains in the New York City subway are captured by both the GUE and the Poisson distribution \cite{jagannath2017random}.
 The authors explain this duality via the Coulomb potential along the route.
 
@@ -23,9 +23,9 @@ Given the complexity of bus networks, several modeling techniques have been used
 Altinkaya and Zontul (2013) put together a comprehensive review of the different models that have been used \cite{altinkaya2013urban}.
 Generally, the different techniques can be broken into three different classes: historical, statistical, and machine learning.
 Historical models are generally the most simplistic model, utilizing either average travel time between stops or average speed between stops to predict future travel times.
-Statistical models fall utilize more advanced techniques such as regression, time series analysis and Kalman filtering.
+Statistical models utilize more advanced techniques such as regression, time series analysis and Kalman filtering.
 Machine learning models are the most complex, but require a large amount of data, which is often difficult to obtain.
-A more recent review of the field by Choudhary, Khamparia and Gahier (2016) includes more recent techniques, which include hybrid models and real time cell phone data\cite{choudhary2016real}.
+A more recent review of the field by Choudhary, Khamparia and Gahier (2016) includes more recent techniques such as hybrid models and real time cell phone data\cite{choudhary2016real}.
 Due to the highly stochastic nature of traffic networks, a combination of techniques is likely necessary to produce the most accurate results.
 
 \section{Classical Models}
@@ -33,16 +33,15 @@ Due to the highly stochastic nature of traffic networks, a combination of techni
 \subsection{Historical Models}
 
 Historical models are the most simple of all modeling techniques, but nevertheless can give reasonable accuracy in certain situations.
-Maiti, Pal, Pal, Chattopadhyay and Mukherjee (2014) showed that historical based models can compete with machine learning models in terms of accuracy (75.56% for historical model vs 76% for neural network)\cite{maiti2014historical}.
+Maiti, Pal, Pal, Chattopadhyay and Mukherjee (2014) showed that historical based models can compete with machine learning models in terms of accuracy (75.56\% for historical model vs 76\% for neural network)\cite{maiti2014historical}.
 Historical data based models typically use very simple features such as travel time and average speed.
 This is well suited to cases where more complex features such as traffic, weather, and schedule are not available, as is the case often in developing countries.
 The small feature space also results in faster prediction times than larger models such as neural networks which can have huge numbers of parameters.
 Because historical models treat traffic as static across periods such as the week, month or year depending on the amount of data.
-This assumption is reasonable, becuase traffic exhibits common patterns which repeat throughout the week such as rush hour traffic.
-However in urban settings, the assumption that traffic conditions will stay the same across weaks is invalid.
+This assumption is reasonable, because traffic exhibits common patterns which repeat throughout the week such as rush hour traffic.
+However in urban settings, the assumption that traffic conditions will stay the same across weeks is invalid.
 This means that historical models are limited in predicting more complex situations.
 Nevertheless, they succeed at giving good accuracy predictions in areas with more static traffic conditions such as rural areas.
-
 
 \subsection{Statistical Models}
 
@@ -61,11 +60,10 @@ Sun, Chen, Song and Wang (2010) used the Autoregressive Integrated Moving Averag
 The study uses bus data from Tianjin in northern coastal Mainland China.
 Travel time for buses is broken up into three sections: free travel time, road intersection delay, and stop time delay.
 Each section is then independently modeled in order to forecast travel time.
-The underlying model has the advantage of being ery simple and fast to compute.
+The underlying model has the advantage of being very simple and fast to compute.
 However, the model neglects several important factors which contribute to traffic congestion such as weather, seasonality, and driving conditions.
-Even so, Sun et al. achieved a 20% error rate for the Tianjin bus.
+Even so, Sun et al. achieved a 20\% error rate for the Tianjin bus.
 
-# TODO good resource for neural networks https://pdfs.semanticscholar.org/32fe/74d12d110f75ea18813f9a8d20d83755529c.pdf
 
 Another common statistical technique involves using Kalman filtering to model bus networks.
 Kalman filtering is an algorithm which uses several measurements to estimate latent variables by estimating the joint probability distribution over the variables.
@@ -73,7 +71,6 @@ The technique is commonly used in guidance and navigation systems.
 Zaki, Ashour, Zorkany and Hesham (2013) used real time GPS data combined with a Kalman filter and a neural network to produce accurate real time predictions of bus arrival times\cite{zaki2013online}.
 The study uses data from an Egyptian bus network.
 The predictions produced have a mean square error in the range of one minute over the course of the route.
-
 
 \section{Machine Learning Models}
 
@@ -104,27 +101,27 @@ In general, the success of kernel regression suggests a complicated nonlinear fe
 
 Another technique for modeling buses uses the relevance vector machine (RVM) algorithm.
 RVM is a variant of the support vector machine (SVM) algorithm.
-SVM produces a binary classifier with the maximal margin linear separator between datapoints of the opposite class.
-This gives certain gaurantees about the performance of the classifier on unseen data.
+SVM produces a binary classifier with the maximal margin linear separator between data points of the opposite class.
+This gives certain guarantees about the performance of the classifier on unseen data.
 Additionally, SVMs can be combined with kernel methods to produce nonlinear classifiers.
-Furthermore, SVMs can be trained in an online fashion, which is important for machine learning problems which may need to be trained on very large datasets.
-RVM is simply an extension of the SVM which gives probabilistic classifaction instead of deterministic classifaction.
+Furthermore, SVMs can be trained in an online fashion, which is important for machine learning problems, which may need to be trained on very large datasets.
+RVM is simply an extension of the SVM which gives probabilistic classification instead of deterministic classification.
 The RVM was developed by Tipping in 2003\cite{tipping2003relevance}.
 
 Yu, Wu, Chen, and Ma used the RVM algorithm to estimate predict bus headway\cite{yu2017probabilistic}.
 The feature set they used included bus headway time series, travel time, and passenger demand.
 The study used two bus routes in Beijing, China,
 Compared with SVM, genetic algorithms, Kalman filters, KNN, and neural networks, the RVM model performed the best.
-With a confidence interval of 95%, over 95% of actual bus headways fell into the prediction interval.
+With a confidence interval of 95\%, over 95\% of actual bus headways fell into the prediction interval.
 The success of kernel based methods also motivates the use of neural networks, which can be more powerful at learning complex features.
 
 \subsection{Neural Network Models}
 
 Neural networks are one of the most powerful and effective machine learning models in current usage.
 Neural networks work in an end to end manner, learning both the feature space and doing prediction.
-They work by combining many simple linear classifiers with nonlinear activation function (called neurons) over several layers.
+They work by combining many simple linear classifiers with a nonlinear activation function (called neurons) over several layers.
 Given enough neurons, a neural network can approximate any function \cite{hornik1989multilayer}
-Despite their incredible power, neural networks do a better job of avoinding overfitting than other powerful models.
+Despite their incredible power, neural networks do a better job of avoiding overfitting than other powerful models.
 They are especially well suited for problems with vast amounts of data.
 For an overview of neural networks, see Neural Network Design \cite{demuth2014neural}.
 
@@ -134,15 +131,15 @@ As early as 1992, Faghri and Hua showed that neural networks have several applic
 Chien, Ding, and Wei (2002) developed a neural network model for predicting bus arrival times \cite{chien2002dynamic}.
 The model contains two variants: a link based model and a stop based model.
 The input features for the neural network include speed, volume, delay, passenger demand and arrival times.
-In the addition to the neural network, the model contains a adaptive algorithm which updates the predictions in real time.
+In addition to the neural network, the model contains a adaptive algorithm which updates the predictions in real time.
 The neural network model with the adaptive algorithm performs well even when predicting multiple stops ahead.
 Chien et al. use the simulation model CORSIM, which Chien and Ding developed with real bus data from route 39 of the New Jersey Transit Corporation \cite{ding2000simulating}.
 
 
 Jeong and Rilett (2004) compared several popular models for bus networks\cite{jeong2004bus}.
 This included a historical data based model, a regression model and a neural network.
-The neural network was foind to give the best performance by a large factor.
-The neural network showed over a 70% improvement in accuracy over the best historic based model.
+The neural network was found to give the best performance by a large factor.
+The neural network showed over a 70\% improvement in accuracy over the best historic based model.
 In all cases the neural network performed the best, with the historical model coming in second and the regression model in third.
 Neural network models have shown the best accuracy in general across several studies, however combining neural networks with other techniques has shown superior performance in many cases.
 
@@ -155,7 +152,7 @@ One common technique is to use real time data from cell phones in order to produ
 Zhou, Zheng and Li (2012) used Android phones to collect data from passengers on a bus to generate estimates for arrival times at various stops\cite{zhou2012long}.
 The system relies on user participation and uses lower energy mechanism for localizing the bus such as cell towers and movement statuses.
 This has the advantage of not relying on a centralized service.
-Additionally, they found that the performance of the systme was much better than the GPS supported solution.
+Additionally, they found that the performance of the system was much better than the GPS supported solution.
 
 Khetarpaul, Gupta, Malhotra and Subramaniam combined neural networks with fuzzy logic systems to general effective real time bus arrival time predictions \cite{khetarpaul2015bus}.
 Fuzzy logic contrasts with boolean logic in that truth values of variables can be any number between 0 and 1, instead of just 0 or 1.
@@ -165,7 +162,7 @@ The model generates reliable predictions for bus arrival times for bus data from
 
 Raut and Goyal (2012) show how recurrent neural networks (RNNs) can be used to predict bus arrival times given the current weather conditions\cite{raut2012public}.
 The underlying model estimates the current traffic load given historical data and current weather conditions.
-The can then theoretically be used to then infer arrival times for buses at future stops.
+This can data then be used to then infer arrival times for buses at future stops.
 This shows the possibility of using more advanced network architectures to model buses networks.
 
 \section{Deep Learning Techniques}
@@ -176,13 +173,13 @@ The principle concept of deep learning is adding many layers in a neural network
 The most common neural network architecture are convolutional neural networks (CNNs) and RNNs.
 CNNs perform the state of the art in computer vision tasks by repeatedly applying a series of convolutional filters to input images.
 RNNs work by passing the output of one computation to the input of the next, thereby remembering information.
-They have revolutionized natural language processing, to a large extent through the Long short term memory (LSTM) architecture.
+They have revolutionized natural language processing, to a large extent through the long short term memory (LSTM) architecture.
 Hochreiter and Schmidhuber (1997) introduced LSTMs, which work by combining a series of gates to store and update its internal memory\cite{hochreiter1997long}.
 In order to achieve the best accuracy on bus modeling problems, deep models may be necessary.
 For an overview of recent deep learning, see LeCun, Bengio and Hinton's Deep Learning\cite{lecun2015deep}.
 
 In addition to natural language processing, deep RNNs have shown success in time series prediction, which is the same realm as predicting bus arrival times.
-Prasad and Prasad (2014) used deep RNNs to identify epilectic seizures from electroencephalography signals\cite{prasad2014deep}.
+Prasad and Prasad (2014) used deep RNNs to identify epileptic seizures from electroencephalography signals\cite{prasad2014deep}.
 This task is typically done by a trained doctor.
 RNNs can be used on time series data to either perform classification or regression depending on the use case.
 A similar model used for regression can be used to predict bus arrival times.
@@ -193,4 +190,4 @@ Borovykh et al. compared the architecture to a traditional LSTM network and foun
 
 
 Yang, Nguyen, San, Li and Krishnaswamy (2015) showed how deep convolutional neural networks can be applied to human activity recognition (HAR) based on time series signals from body sensors\cite{yang2015deep}.
-The prevalence of deep neural models in time series analysis suggests that deep architechtures way work well for predicting bus arrival times.
+The prevalence of deep neural models in time series analysis suggests that deep architectures way work well for predicting bus arrival times.

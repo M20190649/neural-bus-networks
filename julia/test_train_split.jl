@@ -8,19 +8,16 @@ HOURS_IN_DAY = 24
 function contiguous(x, start)
   idx = 0
   started = false
-  str = string("stop_",start)
-  has_key = haskey(x,str)
+  has_key = haskey(x,string(start))
   if !has_key
     return 0
   end
   for i in start:28
-    str = string("stop_",i)
-    #println(str)
-    has_key = haskey(x,str)
-    if !started && has_key
-      started = true
-      idx+=1
-    elseif started && has_key
+    has_key = haskey(x,string(i))
+    if has_key
+      if !started
+        started = true
+      end
       idx+=1
     elseif started && !has_key
       return idx
@@ -35,37 +32,32 @@ function one_hot(element,list)
   return o
 end
 
-function get_routes(file, training_proportion, num_input_stops, stops_ahead_to_predict, stops_to_predict, features, normalize=true)
+function get_routes(files, training_proportion, num_input_stops, stops_ahead_to_predict, stops_to_predict, features, normalize=true)
   total_stops_needed = num_input_stops + stops_ahead_to_predict + stops_to_predict
-  data = JSON.parsefile(file)
+  data = []
+  for file in files
+    data = [data; JSON.parsefile(file)]
+  end
+
   # Let's get random
   shuffle(data)
-  LENGTH_CUTOFF = 20
-  data = filter((x)->length(x)>LENGTH_CUTOFF,data)
   # Start from the 11th stop yo, seems to have the most coverage
   START_STOP = 11
-  data = filter((x)->contiguous(x,START_STOP) > total_stops_needed, data)
+  data = filter((x)->contiguous(x["arrival_times"],START_STOP) > total_stops_needed, data)
+  #data = filter((x)->contiguous(x["traffic_estimates"],START_STOP+num_input_stops) >= stops_ahead_to_predict+1, data)
   N = length(data)
   bus_ids = sort(collect(Set([x["bus_id"] for x in data])))
+
   size_of_x = num_input_stops
-  println(size_of_x)
-  println(stops_to_predict)
-  if "day_of_week" in features
-    size_of_x += DAYS_IN_WEEK
-  end
-  if "hour" in features
-    size_of_x += HOURS_IN_DAY
-  end
-  if "bus_id" in features
-    size_of_x += length(bus_ids)
-  end
+  size_of_x += if ("day_of_week" in features) DAYS_IN_WEEK else 0 end
+  size_of_x += if ("hour" in features) HOURS_IN_DAY else 0 end
+  size_of_x += if ("bus_id" in features) length(bus_ids) else 0 end
+
   input_data = zeros(size_of_x,N)
   output_data = zeros(stops_to_predict,N)
   travel_time_data = zeros(num_input_stops,N)
-  println(size(input_data))
-  println(size(output_data))
   for (i,x) in enumerate(data)
-    times = x["arrival_times"]
+    times = [x["arrival_times"][string(i)] for i in START_STOP:START_STOP+total_stops_needed]
     travel_times = diff(times)
     input_times = travel_times[1:num_input_stops]
     output_times = travel_times[num_input_stops+stops_ahead_to_predict+1:end]
@@ -76,18 +68,10 @@ function get_routes(file, training_proportion, num_input_stops, stops_ahead_to_p
     travel_time_data = (travel_time_data .- mean(travel_time_data,2))./std(travel_time_data,2);
   end
   for (i,x) in enumerate(data)
-    day_encoding =[]
-    hour_encoding =[]
-    bus_id_encoding =[]
-    if "day_of_week" in features
-      day_encoding = one_hot(x["day_of_week"],DAYS_OF_WEEK)
-    end
-    if "hour" in features
-      hour_encoding = one_hot(x["hour"],HOURS_OF_DAY)
-    end
-    if "bus_id" in features
-      bus_id_encoding = one_hot(x["bus_id"],bus_ids)
-    end
+    day_encoding = "day_of_week" in features ? one_hot(x["day_of_week"],DAYS_OF_WEEK) : []
+    hour_encoding = "hour" in features ? one_hot(x["hour"],HOURS_OF_DAY) : []
+    bus_id_encoding = "bus_id" in features ? one_hot(x["bus_id"],bus_ids) : []
+    #traffic_encoding = "traffic_estimates" in features ? [x["traffic_estimates"][string(i)] for i in START_STOP+num_input_stops:START_STOP+num_input_stops+stops_ahead_to_predict] : []
     input_data[:,i] = [travel_time_data[:,i]; day_encoding; hour_encoding; bus_id_encoding]
   end
   num_training_points = round(Int,N*training_proportion)
@@ -103,5 +87,7 @@ function get_routes(file, training_proportion, num_input_stops, stops_ahead_to_p
   return output
 end
 
+
 #file= "/Volumes/Infinity/mbta/h5/2014/mbta_trajectories_2014_15.json"
-#routes = get_routes("/Users/Cooper/Desktop/mbta_trajectories_2014_13.json",0.8,9,1,2,["day_of_week","bus_id","hour"],true);
+#routes = print(get_routes("/Users/Cooper/Desktop/mbta_trajectories_2014_15.json",0.8,5,0,1,["traffic_estimates"],true))
+

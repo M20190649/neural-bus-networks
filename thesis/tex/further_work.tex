@@ -1,1 +1,22 @@
 \chapter{Further Work}
+
+To improve upon the accuracy or traffic models, more data sources need to be incorporated.
+Traffic networks are extremely complex, which makes modeling them difficult.
+Good models require a lot of data, which forces researchers to use simulations instead of real data \cite{halati1997corsim}.
+This is one current limitation of the field.
+One potential avenue is incorporating more nuanced traffic data such as volume, delay, and average speed of all cars in the network.
+This data is easily available in traffic simulators, but real high resolution traffic data is less available.
+
+Another strategy to improving the accuracy of predictions is increasing the expressiveness of the model.
+Given that RNNs generated the best results, other RNN architectures may also be successful.
+Long short term memory networks (LSTM) would be a good avenue of pursuit because they model dependencies at various time scales.
+Additionally, a hybrid model may do a good job a solving the different tasks necessary to predict traffic.
+Specifically, a CNN can be used to model the current state of the overall network, while and RNN can be used to generate real time predictions of trajectories for each of the buses in the network.
+In this way work can be reused because all buses share the same state embedding.
+
+To fully model traffic networks, a holistic approach needs to be taken.
+Traffic conditions are determined not only by local behavior, but by the complex interactions of all the vehicles in the network.
+Bus routes cannot be treated as independent.
+Therefore good models will need to reason about the network as a whole.
+A good path to follow is generating some global state embedding with a large convolutional neural network, then using this embedding to update beliefs of a reccurent network in an online fashion.
+This allows for real time updating of predictions.

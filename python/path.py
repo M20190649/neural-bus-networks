@@ -1,4 +1,5 @@
 import gmplot
+from glob import glob
 import urllib2
 import json
 import scrapetimetable
@@ -162,13 +163,13 @@ def get_stops():
     percentages = [x[1] for x in l]
     return percentages, lats, lons
 
-def get_traffic_estimates(times):
-    out = {}
-    for stop in times:
-        if stop < n:
-            t = times[stop]
-            out[stop]  = traffic(t,stop)
-    return out
+# def get_traffic_estimates(times):
+    # out = {}
+    # for stop in times:
+        # if 10 < stop < n:
+            # t = times[stop]
+            # out[stop]  = traffic(t,stop)
+    # return out
 
 # Computes the arrival time at each stop given the times and z for a bus
 def get_arrival_times(times,percentages,stop_percentages):
@@ -177,7 +178,7 @@ def get_arrival_times(times,percentages,stop_percentages):
     i = 0
     delta = 0.005
     for stop,stop_percentage in enumerate(stop_percentages):
-        while i < len(percentages)-2 and percentages[i+1] < stop_percentage - delta:
+        while i < len(percentages)-3 and percentages[i+1] < stop_percentage - delta:
             i += 1
         p1 = percentages[i]
         p2 = percentages[i+1]
@@ -202,22 +203,18 @@ def get_parameter_list(l):
         out += "|" + str(l[i][0]) + "," + str(l[i][1])
     return out
 
-def traffic(t,i):
-    stops = zip(stop_lats,stop_lons)
-    print("len(stops)")
-    print(len(stops))
-    endpoint = "https://maps.googleapis.com/maps/api/distancematrix/json?"
-    origins = "origins=" + str(stops[i][0]) + "," + str(stops[i][1])
-    destinations = "destinations=" + str(stops[i+1][0]) + "," + str(stops[i+1][1])
-    # t = "now"
-    departure_time = "departure_time=" + str(t)
-    key = "key=AIzaSyBWWfg7KDOHa3F3CotzdPINOKyfCIx33lc"
-    parameters = [origins,destinations,key]
-    parameters = "&".join(parameters)
-    url = endpoint + parameters
-    return json.loads(urllib2.urlopen(url).read())['rows'][0]['elements'][0]['duration']['value']
-
-
+# def traffic(t,i):
+    # global count
+    # stops = zip(stop_lats,stop_lons)
+    # endpoint = "https://maps.googleapis.com/maps/api/distancematrix/json?"
+    # origins = "origins=" + str(stops[i][0]) + "," + str(stops[i][1])
+    # destinations = "destinations=" + str(stops[i+1][0]) + "," + str(stops[i+1][1])
+    # departure_time = "departure_time=" + str(t)
+    # key = "key=AIzaSyBWWfg7KDOHa3F3CotzdPINOKyfCIx33lc"
+    # parameters = [origins,destinations,key]
+    # parameters = "&".join(parameters)
+    # url = endpoint + parameters
+    # return json.loads(urllib2.urlopen(url).read())['rows'][0]['elements'][0]['duration']['value']
 
 stop_percentages,stop_lats,stop_lons = get_stops()
 plot = False
@@ -229,7 +226,9 @@ def get_features(file):
     total_distance = get_total_distance(path[0],path[1])
     out = []
     bus_to_trajectory = get_trajectory(file)
-    for vehicleID in bus_to_trajectory:
+    for idx,vehicleID in enumerate(bus_to_trajectory):
+        # print(float(idx)/len(bus_to_trajectory))
+        print idx/len(bus_to_trajectory)*100," percent complete         \r",
         xs,ys,ts = bus_to_trajectory[vehicleID]
         cuts = get_cuts(xs,ys,ts)
         path_x,path_y = get_path()
@@ -247,8 +246,10 @@ def get_features(file):
             projection = [project(x,y,path_x,path_y,total_distance) for (x,y) in zip(xss,yss)]
             percentages = [p[1] for p in projection]
             percentages, tss = sanitize(tss,percentages)
+            if len(percentages) < 10:
+                continue
             arrival_times = get_arrival_times(tss,percentages,stop_percentages)
-            traffic_estimates = get_traffic_estimates(arrival_times)
+            # traffic_estimates = get_traffic_estimates(arrival_times)
             if plot:
                 name = "path"
                 if plot_route:
@@ -286,21 +287,29 @@ def get_features(file):
             time = datetime.datetime.fromtimestamp(mt).time()
             schedule_code = scrapetimetable.TimeToScheduleCode(date)
             input_vector["arrival_times"] = arrival_times
-            input_vector["traffic_estimates"] = traffic_estimates
+            # input_vector["traffic_estimates"] = traffic_estimates
             input_vector["bus_id"] = vehicleID
             input_vector["start_time"] = mt
             input_vector["schedule_code"] = schedule_code
             input_vector["day_of_week"] = date.weekday()
             input_vector["hour"] = time.hour
             input_vector["year"] = date.year
-            print(input_vector)
-            return
-            out.append(arrival_times)
+            out.append(input_vector)
     # io.savemat(file[0:-3]+"_out", out, oned_as = 'row')
     with open(file[0:-3]+".json", 'w') as outfile:
         json.dump(out, outfile)
     return out
 
-get_features("/Volumes/Infinity/mbta/h5/2014/mbta_trajectories_2014_15.h5")
+# print(get_features("/Volumes/Infinity/mbta/h5/2014/mbta_trajectories_2014_15.h5"))
 
-# print(traffic(1523905511,5))
+h5filenames = glob('/Volumes/Infinity/mbta/h5/*/*.json')
+print(h5filenames)
+# for i,file in enumerate(h5filenames):
+    # print("Processing file ", i,"/",len(h5filenames))
+    # try:
+        # get_features(file)
+    # except e:
+        # print("Error on ", file)
+
+
+# print([traffic("now",i) for i in 1:28])

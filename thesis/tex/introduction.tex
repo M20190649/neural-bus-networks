@@ -7,24 +7,24 @@
 Americans spend over 40 hours stuck in traffic a year \cite{traffic}.
 This costs the US \$121 billion dollars a year.
 Studies from The American Journal of Preventive Medicine have shown that commuting causes a range of negative health side effects \cite{trafficandhealth}.
-These effects include raised cholestrol, increased depression risk, increased anxiety, and decreased overall happiness.
+These effects include raised cholesterol, increased depression risk, increased anxiety, and decreased overall happiness.
 Commuting results in lower life satisfaction.
 Specifically riding a bus for 30 minutes or longer is connected to the lowest level of life satisfaction compared to other commutes.
 All groups including bike commuters experience reduced life satisfaction proportional to the length of the commute.
-In addition to the detrimental health effects of, road crashes result in 1.3 million deaths a year \cite{trafficdeaths}.
+In addition to the detrimental health effects, road crashes result in 1.3 million deaths a year \cite{trafficdeaths}.
 An additional 20-50 million people are injured or disabled each year in road crashes.
 The statistics are worse in low income countries.
 
 % Environmental impact
 
 In addition to health effects, traffic has a strong impact on the environment.
-Transportation accounts for 30% of US greenhouse gas emissions.
+Transportation accounts for 30\% of US greenhouse gas emissions.
 Road traffic also contributes to reduced air quality, traffic congestion and urban sprawl.
 
 % Self driving cars
 
 Technology can to a great extent solve some of these problems.
-Public transit can largely reduce the environmental impact of transporation.
+Public transit can largely reduce the environmental impact of transportation.
 A full bus is 6 times more efficient than a single driver car \cite{trafficenv}.
 Additionally, buses emit a tenth of the hydrocarbons compared to single driver cars \cite{trafficenv}.
 Recent years have also shown an increase in electric vehicles, which when combined with sustainable energy practices can drastically reduce emissions.
@@ -33,7 +33,7 @@ Furthermore, the advent of autonomous cars promises a future of safer roads and 
 Interestingly, car ownership shows signs of decline in the US, with millennials waiting longer before buying cars \cite{cars}.
 Ride sharing services like Uber are transforming mobility and the auto industry as a whole.
 An increase in sensors and connectivity of cars allows large scale optimization which can decrease travel times for users.
-All of these technical innovations make it cheaper, safer and more convenient for people to use modern forms of transporation.
+All of these technical innovations make it cheaper, safer and more convenient for people to use modern forms of transportation.
 However, as mobility becomes available to more people, problems regarding traffic congestion will get worse, not better.
 
 % There will be more traffic
@@ -42,7 +42,7 @@ The problem of traffic is also not going anywhere.
 Over the next 30 years, the US population is estimated to increase by 70 million \cite{traffic}.
 Larger populations, and movement into urban and suburban areas exacerbates the issue.
 Traffic in other countries is even worse.
-India's transportation system is in crisis with booming population growth in urban areas and increasing vehicle numbers are overwhelming transporation infrastructure.
+India's transportation system is in crisis with booming population growth in urban areas and increasing vehicle numbers are overwhelming transportation infrastructure.
 Clearly, transit technology needs to keep up with exploding demand.
 
 % Coordinating roads and traffic networks is important
@@ -58,7 +58,6 @@ This research focuses on improving the reliability of buses for riders by using 
 
 
 \section{Bus Network Characteristics}
-Describe why it's a hard problem
 
 % Large number of factors
 
@@ -74,7 +73,7 @@ The requires the use of complex models and large amounts of data.
 Besides the sheer number of variables, bus networks also exhibit some behavior which makes them different from typical car networks.
 For example, buses trajectories are affected by passenger demand.
 The amount of time a bus spends waiting at a stop depends on how many people get off and on at that stop.
-Furthermore, a bus may not make all of its stops along a route, and stops may move over time.
+Furthermore, a bus may not make all of its stops along a route, and stops may move over time due to weather or construction conditions.
 Buses also have a schedule to follow, whereas cars do not.
 For this reason, some buses will slow down if ahead of schedule to allow other buses to catch up.
 These features make bus networks more complex, but they also provide structure for models to learn.
@@ -84,12 +83,16 @@ These features make bus networks more complex, but they also provide structure f
 An interesting emergent property of bus networks is clumping.
 This term refers to the phenomenon of buses along a route to tend to clump together in groups after starting at uniform intervals.
 The effect is caused by the relationship between buses along a route and the respective riders.
-Consider the following scenario.
-A bus misses a light, and therefore starts running behind schedule.
-At future stops, more passengers arrive due to the delay.
-The excess of passengers at future stops makes the bus slow down even more, because it takes longer to pick up more passengers.
-This produces a positive feedback loop, which causes slow buses to become slower.
-Eventually, the previous bus will catch up, causing the buses to clump together.
+Consider the following scenario:
+
+\begin{enumerate}
+\item A bus misses a light, and therefore starts running behind schedule
+\item At future stops, more passengers arrive due to the delay
+\item The excess of passengers at future stops makes the bus slow down even more, because it takes longer to pick up more passengers
+\item This produces a negative feedback loop, which causes slow buses to become slower
+\item Eventually, the previous bus will catch up, causing the buses to clump together
+\end{enumerate}
+
 The opposite happens to a bus when it starts running ahead of schedule, meaning fast buses get faster.
 This exacerbates the issue of clumping.
 This complex interaction among buses along the same route requires modeling at a route level rather than a bus level.
@@ -99,17 +102,18 @@ This complex interaction among buses along the same route requires modeling at a
 Another issue which arises studying bus networks is the natural randomness of traffic.
 Even with a perfect modeling scheme, there are always confounding factors.
 This results in a large variance which limits the theoretical best performance for prediction.
+Incorporating more data sources can mitigate this, because the model can exploit more patterns in the data.
 
 \section{Future of Travel}
 
 We now take a look to the future of urban mobility.
 It's difficult to talk about the future of transportation without considering the implications autonomy and AI.
-Although the world has not yet seen widespread adoption of self driving cars yet, the sheer amount of captital being invested into their development indicates the world is ready for a change.
-This change will bring improve the efficiency of traffic networks, increase safety, and cut costs for urban travel.
+Although the world has not yet seen widespread adoption of self driving cars yet, the sheer amount of capital being invested into their development indicates the world is ready for a change.
+This change will improve the efficiency of traffic networks, increase safety, and cut costs for urban travel.
 However this change will also bring unemployment and uncertainty for millions of Americans who drive for a living.
 Care must be taken so that this technology improves humanity as a whole, not just the lives of the urban elite.
 
-Nevertheless, the posibilities created autonomous cars combined with artificially intelligent traffic networks are immense.
+Nevertheless, the possibilities created autonomous cars combined with artificially intelligent traffic networks are immense.
 Deep learning models can be used to estimate the location and trajectory of all the vehicles in the network simultaneously.
 This can be combined with a historical model to predict demand and passenger behavior.
 Together these models can be used to dynamically allocate autonomous buses to the areas where they are needed the most.
@@ -119,19 +123,19 @@ Rather than looking up a bus schedule to determine the fastest way to commute, p
 An electric autonomous car will pull up to their exact location.
 The autonomous car will find the nearest autonomous bus traveling in the correct direction and automatically link up while driving to transfer the passenger while the vehicles are still moving.
 Another autonomous car will make the final leg to the destination.
-Passengers will pay the car directly, using a biometric based cryptocurrency.
+Passengers will pay the ride directly, using a biometric based cryptocurrency.
 The autonomous car will then recharge and pay for any repairs using its profits.
 
 For mid range commutes, passengers will travel via a combination of autonomous flying drones and autonomous cars.
 In larger cities, the number of flying drones will outnumber cars.
-All large urban metropolises will be connected by Hyperloops or a similar techonology.
+All large urban metropolises will be connected by hyperloops or a similar technology.
 This will allow people to work and live in several cities seamlessly.
-This will increase collaboration and sharing of ideas across nations and improved international relations.
+This will increase collaboration and sharing of ideas across nations, as well as improving international relations.
 
 As connections between nations grow, there will be an increases demand for cheap, efficient inter-continental travel.
 Supersonic travel will return to support this demand, allowing jets to travel from New York to Paris in 3.5 hours.
-The decreased cost in rocket technology will for the first time allow intra-planetary travel.
-Completely resuable rockets will make routine trips across long haul journeys, taking passengers from Houston to Sydney in a half an hour.
-As free travel and trade bring the world closer together, people will look to the stars, and contemplating and developing solutions interplanetary travel, continuing to humanity's horizons.
+The decreased cost in rocket technology will for the first time allow intra-planetary rocket travel.
+Completely reusable rockets will make routine trips across long haul journeys, taking passengers from Houston to Sydney in a half an hour.
+As free travel and trade bring the world closer together, people will look to the stars, contemplating and developing solutions for interplanetary travel, furthering humanity's horizon.
 
 By solving the technical problems of today humanity will have a bright future.

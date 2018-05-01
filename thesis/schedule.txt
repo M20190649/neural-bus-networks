@@ -19,7 +19,6 @@ X Introduction
     X Describe why it's a hard problem
     X Vision for the future/Ideal solutions
 
-To Do
 X Approach: Data
 X Interpolation
 X Review python scripts and data
@@ -37,20 +36,20 @@ Week 2: Models
 
 Tasks
 
-O Linear
-O Implement feed forward
-O CNN
-O RNN
-O Visualizations of models
-O Advanced techniques (eg. attention, bi-directional LSTM)
-O Approach: Models
-O Approach: Training (describe dev/training environment)
-O Generate convergence plots
-O Generate error plots
+X Linear
+X Implement feed forward
+X CNN
+X RNN
+X Visualizations of models
+- Advanced techniques (eg. attention, bi-directional LSTM)
+X Approach: Models
+X Approach: Training (describe dev/training environment)
+X Generate convergence plots
+X Generate error plots
 
-O Generate historic statistics
-    O Histograms, show multimodal
-    O Show increase of travel over time
+- Generate historic statistics
+    - Histograms, show multimodal
+    - Show increase of travel over time
 
 Week 3: Training
 
@@ -60,12 +59,23 @@ Week 4: Evaluation
 
 Tasks
 
-O Approach: Inference
-O Advanced evaluation/error metrics (TSNE, clustering)
-O Conclusion
-O Further Work
-O Abstract (150 word max)
+X Approach: Inference
+- Advanced evaluation/error metrics (TSNE, clustering)
 
-O Table of Contents
-O List of Figures
-O Bibliography
+
+X Add tables and more data to results
+X Further Work
+X Table of Contents
+X List of Figures
+X Bibliography
+
+X Conclusion
+X Abstract (150 word max)
+X Input citations
+
+O Review whole paper
+    X Spell check
+    X Grammar check
+    O Format check
+    O Flow check
+    O Check the thesis guide to make sure you're kosher
